@@ -6,6 +6,7 @@ import 'package:flutter_test1/geo_location.dart';
 import 'package:flutter_test1/get_location.dart';
 import 'package:flutter_test1/gkeyboard.dart';
 import 'package:flutter_test1/language.dart';
+import 'package:flutter_test1/metadata.dart';
 import 'package:flutter_test1/segment.dart';
 import 'package:flutter_test1/tabbar.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => ContactBloc(),
-        child: MyAppkey(),
+        child: MetadataScreen(),
       ),
     );
   }
@@ -55,8 +56,6 @@ class Contact {
 
   Contact(this.name, this.number, this.message);
 }
-
-// --------------- BLoC Part ---------------
 
 enum ContactEvent { filterContacts }
 
@@ -129,6 +128,37 @@ class ContactCard extends StatelessWidget {
         subtitle: Text(contact.message),
         trailing: Icon(Icons.message),
       ),
+    );
+  }
+}
+
+class MetadataItem extends StatelessWidget {
+  final String label;
+  final String value;
+
+  MetadataItem({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 4),
+        Text(
+          value,
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
+        SizedBox(height: 16),
+      ],
     );
   }
 }

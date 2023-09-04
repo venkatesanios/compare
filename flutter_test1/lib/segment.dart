@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'PermissionCheck.dart';
 import 'package:flutter_test1/PermissionCheck.dart';
+import 'package:get/get.dart';
+import 'package:flutter_test1/localeString.dart';
 
 class SegmentedButtonApp extends StatelessWidget {
   const SegmentedButtonApp({Key? key});
@@ -51,7 +53,7 @@ class SegmentedButtonApp extends StatelessWidget {
                                     Text('Device IMEI no :  ',
                                         style: TextStyle(fontSize: 14)),
                                     Banner(
-                                      message: 'New',
+                                      message: 'message.tr',
                                       location: BannerLocation.bottomEnd,
                                       color: Colors.red,
                                       child: Container(
@@ -95,7 +97,7 @@ class SegmentedButtonApp extends StatelessWidget {
                 ),
                 Spacer(),
                 SizedBox(height: 20),
-                Text('Multiple choice'),
+                Text('title2.tr'),
                 Container(
                   child: MultipleChoice(
                     name: ['first', 'second', 'third', 'four'],

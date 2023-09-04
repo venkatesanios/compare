@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test1/segment.dart';
 import 'package:get/get.dart';
 
 class LanguageSelectionApp extends StatelessWidget {
@@ -33,7 +34,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
     // For demonstration purposes, I'm just printing the locale name.
     // print('Changing to ${locale.languageCode} - ${locale.countryCode}');
     Get.back();
-    //Get.updateLocale(locale);
+    Get.updateLocale(locale);
   }
 
   @override
@@ -79,7 +80,14 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
               padding: const EdgeInsets.all(16.0),
               child: Text('Selected Language: ${selectedLanguage.tr}'),
             ),
-            Center(child: ElevatedButton(onPressed: () {}, child: Text('Next')))
+            Center(
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              SegmentedButtonApp()));
+                    },
+                    child: Text('Next.tr')))
           ],
         ),
       ),

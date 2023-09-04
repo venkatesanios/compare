@@ -22,13 +22,13 @@ class _PinEntryKeyboardState extends State<PinEntryKeyboard> {
   String enteredPin = '';
 
   void handleKeyTap(String key) {
-    if (key == 'C') {
+    if (key == '<-') {
       if (enteredPin.isNotEmpty) {
         setState(() {
           enteredPin = enteredPin.substring(0, enteredPin.length - 1);
         });
       }
-    } else if (key == 'Submit') {
+    } else if (key == 'L>') {
       // Handle PIN submission here
       print('Submitted PIN: $enteredPin');
     } else {
@@ -69,9 +69,9 @@ class _PinEntryKeyboardState extends State<PinEntryKeyboard> {
               '7',
               '8',
               '9',
-              'C',
+              '<-',
               '0',
-              'Submit'
+              'L>'
             ];
 
             return InkWell(
