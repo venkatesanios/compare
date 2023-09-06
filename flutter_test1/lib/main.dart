@@ -5,13 +5,25 @@ import 'package:flutter_test1/bottomsheet.dart';
 import 'package:flutter_test1/geo_location.dart';
 import 'package:flutter_test1/get_location.dart';
 import 'package:flutter_test1/gkeyboard.dart';
+import 'package:flutter_test1/googlemap.dart';
 import 'package:flutter_test1/language.dart';
 import 'package:flutter_test1/metadata.dart';
+import 'package:flutter_test1/product/ProductScreen.dart';
+import 'package:flutter_test1/product/ProductViewModel.dart';
 import 'package:flutter_test1/segment.dart';
 import 'package:flutter_test1/tabbar.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => ProductViewModel()),
+      // ChangeNotifierProvider(create: (context) => CustomerDevicePvd()),
+      // ChangeNotifierProvider(create: (context) => SellDeviceProvider()),
+      // ChangeNotifierProvider(create: (context) => DeviceListViewModel()),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +37,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => ContactBloc(),
-        child: MetadataScreen(),
+        child: ProductForm(),
       ),
     );
   }

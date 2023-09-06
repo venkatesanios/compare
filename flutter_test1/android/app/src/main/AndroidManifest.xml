@@ -16,11 +16,22 @@
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
-                 to determine the Window background behind the Flutter UI. -->
+                 to determine the Window background behind the Flutter UI.<manifest ...
+  <application ...
+    <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="YOUR KEY HERE"/> -->
             <meta-data
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+              <!-- <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCMgmgazqGQjVr7LHxgztqRZZS9_WDoKxo"/>  <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBM8ywYw1UDb3aXaTF3w21EJ86ePWmAkPE"/>   AIzaSyBKJYGIF_MprNgPsSzvScNqorDMNmKl1jk
+OR -->
+                <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBKJYGIF_MprNgPsSzvScNqorDMNmKl1jk"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
