@@ -1,13 +1,14 @@
 import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_test1/drop_down_button.dart';
+import 'package:flutter_test1/inputHeading.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-import 'ProductViewModel.dart';
 
 class ProductForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final productViewModel = Provider.of<ProductViewModel>(context);
+    // final productViewModel = Provider.of<ProductViewModel>(context);
 
     final dateFormat = DateFormat("yyyy-MM-dd");
 
@@ -18,154 +19,147 @@ class ProductForm extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          child: ListView(
-            children: <Widget>[
-              DropdownButtonFormField<String>(
-                value: productViewModel.category,
-                onChanged: (newValue) {
-                  productViewModel.updateProductCategory(newValue);
-                },
-                items: ['Category A', 'Category B', 'Category C']
-                    .map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                decoration: InputDecoration(labelText: 'Category'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Category is required';
-                  }
-                  return null;
-                },
-              ),
-              DropdownButtonFormField<String>(
-                value: productViewModel.modelType,
-                onChanged: (newValue) {
-                  productViewModel.updateProductModelType(newValue);
-                },
-                items: ['Model A', 'Model B', 'Model C'].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                decoration: InputDecoration(labelText: 'Model Type'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Model Type is required';
-                  }
-                  return null;
-                },
-              ),
-              DropdownButtonFormField<String>(
-                value: productViewModel.productStatus,
-                onChanged: (newValue) {
-                  productViewModel.updateProductStatus(newValue);
-                },
-                items: ['Active', 'Inactive'].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                decoration: InputDecoration(labelText: 'Product Status'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Product Status is required';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                initialValue: productViewModel.deviceId,
-                onChanged: (newValue) {
-                  productViewModel.updateProductDeviceId(newValue);
-                },
-                decoration: InputDecoration(labelText: 'Device ID'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Device ID is required';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                initialValue: productViewModel.description,
-                onChanged: (newValue) {
-                  productViewModel.updateProductDescription(newValue);
-                },
-                decoration: InputDecoration(labelText: 'Description'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Description is required';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                initialValue: productViewModel.warranty,
-                onChanged: (newValue) {
-                  productViewModel.updateProductWarranty(newValue);
-                },
-                decoration: InputDecoration(labelText: 'Warranty'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Warranty is required';
-                  }
-                  return null;
-                },
-              ),
-              DateTimeField(
-                format: dateFormat,
-                initialValue: productViewModel.currentDate ?? DateTime.now(),
-                onChanged: (newValue) {
-                  productViewModel.updateProductCurrentDate(newValue!);
-                },
-                decoration: InputDecoration(labelText: 'Current Date'),
-                onShowPicker: (context, currentValue) async {
-                  final date = await showDatePicker(
-                    context: context,
-                    firstDate: DateTime(2000),
-                    initialDate: currentValue ?? DateTime.now(),
-                    lastDate: DateTime(2101),
-                  );
-                  if (date != null) {
-                    return date;
-                  } else {
-                    return currentValue;
-                  }
-                },
-                validator: (value) {
-                  if (value == null) {
-                    return 'Current Date is required';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Cancel'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (Form.of(context).validate()) {
-                        productViewModel.saveProduct();
-                        Navigator.of(context).pop();
-                      }
-                    },
-                    child: Text('Save'),
-                  ),
-                ],
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InputHeading(heading: 'Model'),
+                    Container(
+                      color: Colors.white,
+                      width: double.infinity,
+                      child: MyDropDown(initialValue: 'Model', itemList: [
+                        'Model',
+                        'Model 1',
+                        'Model 2',
+                        'Model 3',
+                      ]),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InputHeading(heading: 'category'),
+                    Container(
+                      color: Colors.white,
+                      width: double.infinity,
+                      child: MyDropDown(initialValue: 'category', itemList: [
+                        'category',
+                        'category 1',
+                        'category 2',
+                        'category 3',
+                      ]),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InputHeading(heading: 'Product Status'),
+                    Container(
+                      color: Colors.white,
+                      width: double.infinity,
+                      child: MyDropDown(initialValue: 'Admin', itemList: [
+                        'Admin',
+                        'Stand BY',
+                      ]),
+                    )
+                  ],
+                ),
+                TextFormField(
+                  initialValue: 'OP767654432',
+                  onChanged: (newValue) {
+                    // productViewModel.updateProductDeviceId(newValue);
+                  },
+                  decoration: InputDecoration(labelText: 'Device ID'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Device ID is required';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  initialValue: 'Oro pump',
+                  onChanged: (newValue) {
+                    //  productViewModel.updateProductDescription(newValue);
+                  },
+                  decoration: InputDecoration(labelText: 'Description'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Description is required';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  initialValue: '10',
+                  onChanged: (newValue) {
+                    // productViewModel.updateProductWarranty(newValue);
+                  },
+                  decoration: InputDecoration(labelText: 'Warranty'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Warranty is required';
+                    }
+                    return null;
+                  },
+                ),
+                DateTimeField(
+                  format: dateFormat,
+                  initialValue: DateTime.now(),
+                  onChanged: (newValue) {
+                    // productViewModel.updateProductCurrentDate(newValue!);
+                  },
+                  decoration: InputDecoration(labelText: 'Manufacturing Date'),
+                  onShowPicker: (context, currentValue) async {
+                    final date = await showDatePicker(
+                      context: context,
+                      firstDate: DateTime(2023),
+                      initialDate: currentValue ?? DateTime.now(),
+                      lastDate: DateTime.now(),
+                    );
+                    if (date != null) {
+                      return date;
+                    } else {
+                      return currentValue;
+                    }
+                  },
+                  validator: (value) {
+                    if (value == null) {
+                      return 'Current Date is required';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        if (Form.of(context).validate()) {
+                          //   productViewModel.saveProduct();
+                        }
+                      },
+                      child: Text('ADD'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text('Cancel'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

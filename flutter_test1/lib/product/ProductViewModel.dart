@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class ProductViewModel extends ChangeNotifier {
   // Define the properties for the product
-  late String _category;
-  late String _modelType;
-  late String _productStatus;
-  late String _deviceId;
-  late String _description;
-  late String _warranty;
-  late DateTime _currentDate;
+  String _category = '';
+  String _modelType = '';
+  String _productStatus = '';
+  String _deviceId = '';
+  String _description = '';
+  String _warranty = '';
+  DateTime _currentDate = DateTime.now();
 
   // Getters for the properties
   String get category => _category;
