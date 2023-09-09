@@ -2,15 +2,32 @@ import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test1/drop_down_button.dart';
 import 'package:flutter_test1/inputHeading.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_test1/product/ProductViewModel.dart';
+import 'package:flutter_test1/state_management/add_product_provider.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-class ProductForm extends StatelessWidget {
+class ProductForm extends StatefulWidget {
+  @override
+  _ProductFormState createState() => _ProductFormState();
+}
+
+class _ProductFormState extends State<ProductForm> {
+  final _formKey = GlobalKey<FormState>();
+
+  String selectedModel = '--/--';
+  String? Modelvalue;
+
+  String selectedCategory = '--/--';
+  String selectedProductStatus = '--/--';
+
+  final dateFormat = DateFormat("yyyy-MM-dd");
+
   @override
   Widget build(BuildContext context) {
-    // final productViewModel = Provider.of<ProductViewModel>(context);
-
-    final dateFormat = DateFormat("yyyy-MM-dd");
+    var addProductPvd = Provider.of<AddProductProvider>(context, listen: true);
+    var productViewModel = Provider.of<ProductViewModel>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
@@ -19,6 +36,7 @@ class ProductForm extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
+          key: _formKey,
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -29,13 +47,22 @@ class ProductForm extends StatelessWidget {
                     Container(
                       color: Colors.white,
                       width: double.infinity,
-                      child: MyDropDown(initialValue: 'Model', itemList: [
-                        'Model',
-                        'Model 1',
-                        'Model 2',
-                        'Model 3',
-                      ]),
-                    )
+                      child: MyDropDown(
+                        initialValue: addProductPvd.initialModel,
+                        itemList: [
+                          '--/--',
+                          'Model 1',
+                          'Model 2',
+                          'Model 3',
+                        ],
+                        purpose: 'addProduct/model',
+                      ),
+                    ),
+                    if (addProductPvd.initialModel == '--/--')
+                      Text(
+                        'Please select a Model',
+                        style: TextStyle(color: Colors.red),
+                      ),
                   ],
                 ),
                 SizedBox(
@@ -44,17 +71,26 @@ class ProductForm extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InputHeading(heading: 'category'),
+                    InputHeading(heading: 'Category'),
                     Container(
                       color: Colors.white,
                       width: double.infinity,
-                      child: MyDropDown(initialValue: 'category', itemList: [
-                        'category',
-                        'category 1',
-                        'category 2',
-                        'category 3',
-                      ]),
-                    )
+                      child: MyDropDown(
+                        initialValue: addProductPvd.initialcategory,
+                        itemList: [
+                          '--/--',
+                          'Category 1',
+                          'Category 2',
+                          'Category 3',
+                        ],
+                        purpose: 'addProduct/category',
+                      ),
+                    ),
+                    if (addProductPvd.initialcategory == '--/--')
+                      Text(
+                        'Please select a category',
+                        style: TextStyle(color: Colors.red),
+                      ),
                   ],
                 ),
                 SizedBox(
@@ -67,48 +103,55 @@ class ProductForm extends StatelessWidget {
                     Container(
                       color: Colors.white,
                       width: double.infinity,
-                      child: MyDropDown(initialValue: 'Admin', itemList: [
-                        'Admin',
-                        'Stand BY',
-                      ]),
-                    )
+                      child: MyDropDown(
+                        initialValue: addProductPvd.initialProductstatus,
+                        itemList: [
+                          '--/--',
+                          'Admin',
+                          'Stand BY',
+                        ],
+                        purpose: 'addProduct/Status',
+                      ),
+                    ),
+                    if (addProductPvd.initialProductstatus == '--/--')
+                      Text(
+                        'Please select a product status',
+                        style: TextStyle(color: Colors.red),
+                      ),
                   ],
                 ),
                 TextFormField(
-                  initialValue: 'OP767654432',
-                  onChanged: (newValue) {
-                    // productViewModel.updateProductDeviceId(newValue);
-                  },
+                  initialValue: productViewModel.deviceId,
                   decoration: InputDecoration(labelText: 'Device ID'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Device ID is required';
+                    } else {
+                      productViewModel.updateProductDeviceId(value);
                     }
                     return null;
                   },
                 ),
                 TextFormField(
-                  initialValue: 'Oro pump',
-                  onChanged: (newValue) {
-                    //  productViewModel.updateProductDescription(newValue);
-                  },
+                  initialValue: productViewModel.description,
                   decoration: InputDecoration(labelText: 'Description'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Description is required';
+                    } else {
+                      productViewModel.updateProductDescription(value);
                     }
                     return null;
                   },
                 ),
                 TextFormField(
-                  initialValue: '10',
-                  onChanged: (newValue) {
-                    // productViewModel.updateProductWarranty(newValue);
-                  },
+                  initialValue: productViewModel.warranty,
                   decoration: InputDecoration(labelText: 'Warranty'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Warranty is required';
+                    } else {
+                      productViewModel.updateProductWarranty(value);
                     }
                     return null;
                   },
@@ -117,7 +160,7 @@ class ProductForm extends StatelessWidget {
                   format: dateFormat,
                   initialValue: DateTime.now(),
                   onChanged: (newValue) {
-                    // productViewModel.updateProductCurrentDate(newValue!);
+                    productViewModel.updateProductCurrentDate(newValue!);
                   },
                   decoration: InputDecoration(labelText: 'Manufacturing Date'),
                   onShowPicker: (context, currentValue) async {
@@ -135,7 +178,7 @@ class ProductForm extends StatelessWidget {
                   },
                   validator: (value) {
                     if (value == null) {
-                      return 'Current Date is required';
+                      return 'Manufacturing Date is required';
                     }
                     return null;
                   },
@@ -146,14 +189,22 @@ class ProductForm extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        if (Form.of(context).validate()) {
-                          //   productViewModel.saveProduct();
+                        if (_formKey.currentState!.validate()) {
+                          productViewModel.updateProductCategory(
+                              addProductPvd.initialcategory);
+                          productViewModel.updateProductModelType(
+                              addProductPvd.initialModel);
+                          productViewModel.updateProductStatus(
+                              addProductPvd.initialProductstatus);
+                          productViewModel.saveProduct();
                         }
                       },
                       child: Text('ADD'),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Handle Cancel button
+                      },
                       child: Text('Cancel'),
                     ),
                   ],

@@ -21,32 +21,32 @@ class ProductViewModel extends ChangeNotifier {
 
   // Update methods for the properties
   void updateProductCategory(String category) {
-    _category = category ?? "";
+    _category = category;
     notifyListeners();
   }
 
   void updateProductModelType(String modelType) {
-    _modelType = modelType ?? "";
+    _modelType = modelType;
     notifyListeners();
   }
 
   void updateProductStatus(String productStatus) {
-    _productStatus = productStatus ?? "";
+    _productStatus = productStatus;
     notifyListeners();
   }
 
   void updateProductDeviceId(String deviceId) {
-    _deviceId = deviceId ?? "";
+    _deviceId = deviceId;
     notifyListeners();
   }
 
   void updateProductDescription(String description) {
-    _description = description ?? "";
+    _description = description;
     notifyListeners();
   }
 
   void updateProductWarranty(String warranty) {
-    _warranty = warranty ?? "";
+    _warranty = warranty;
     notifyListeners();
   }
 
@@ -57,10 +57,7 @@ class ProductViewModel extends ChangeNotifier {
 
   // Save the product data (you can implement your logic here)
   void saveProduct() {
-    // Implement your logic for saving the product
-    // For example, you can send the data to a database or API
-    // Here, we'll just print the product data as an example
-    print('Product Data:');
+    print('Add Product Data');
     print('Category: $_category');
     print('Model Type: $_modelType');
     print('Product Status: $_productStatus');

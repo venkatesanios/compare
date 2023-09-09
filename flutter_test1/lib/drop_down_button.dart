@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test1/state_management/add_product_provider.dart';
+import 'package:provider/provider.dart';
 
 class MyDropDown extends StatefulWidget {
   String initialValue;
+  String purpose;
   List<String> itemList;
 
-  MyDropDown({super.key, required this.initialValue, required this.itemList});
+  MyDropDown({
+    super.key,
+    required this.initialValue,
+    required this.itemList,
+    required this.purpose,
+  });
 
   @override
   State<MyDropDown> createState() => _MyDropDownState();
@@ -13,6 +21,8 @@ class MyDropDown extends StatefulWidget {
 class _MyDropDownState extends State<MyDropDown> {
   @override
   Widget build(BuildContext context) {
+    var addProductPvd = Provider.of<AddProductProvider>(context, listen: true);
+
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
@@ -44,8 +54,17 @@ class _MyDropDownState extends State<MyDropDown> {
         // After selecting the desired option,it will
         // change button value to selected value
         onChanged: (String? newValue) {
+          if (widget.purpose == 'addProduct/model') {
+            addProductPvd.editModel(newValue!);
+          } else if (widget.purpose == 'addProduct/category') {
+            addProductPvd.editcategory(newValue!);
+          } else if (widget.purpose == 'addProduct/Status') {
+            addProductPvd.editProductstatus(newValue!);
+          } else {}
+
           setState(() {
             widget.initialValue = newValue!;
+            // widget.Value = newValue;
           });
         },
       ),
