@@ -8,10 +8,10 @@ import 'package:flutter_test1/gkeyboard.dart';
 import 'package:flutter_test1/googlemap.dart';
 import 'package:flutter_test1/language.dart';
 import 'package:flutter_test1/metadata.dart';
-import 'package:flutter_test1/product/ProductScreen.dart';
-import 'package:flutter_test1/product/ProductViewModel.dart';
+import 'package:flutter_test1/product/product_Screen.dart';
+import 'package:flutter_test1/product/product_ViewModel.dart';
 import 'package:flutter_test1/segment.dart';
-import 'package:flutter_test1/state_management/add_product_provider.dart';
+import 'package:flutter_test1/product/state_management/add_product_provider.dart';
 import 'package:flutter_test1/tabbar.dart';
 import 'package:provider/provider.dart';
 

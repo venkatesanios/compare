@@ -1,10 +1,9 @@
 import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test1/drop_down_button.dart';
-import 'package:flutter_test1/inputHeading.dart';
-import 'package:flutter_test1/product/ProductViewModel.dart';
-import 'package:flutter_test1/state_management/add_product_provider.dart';
-import 'package:get/get.dart';
+import 'package:flutter_test1/product/widgets/drop_down_button.dart';
+import 'package:flutter_test1/product/widgets/inputHeading.dart';
+import 'package:flutter_test1/product/product_ViewModel.dart';
+import 'package:flutter_test1/product/state_management/add_product_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
