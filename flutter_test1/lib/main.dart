@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test1/alert.dart';
 import 'package:flutter_test1/bottomsheet.dart';
+import 'package:flutter_test1/dealar_definition/dealer_Screen.dart';
 import 'package:flutter_test1/geo_location.dart';
 import 'package:flutter_test1/get_location.dart';
 import 'package:flutter_test1/gkeyboard.dart';
@@ -25,7 +26,7 @@ void main() {
       // ChangeNotifierProvider(create: (context) => SellDeviceProvider()),
       // ChangeNotifierProvider(create: (context) => DeviceListViewModel()),
     ],
-    child: MyApp(),
+    child: DealerScreen(),
   ));
 }
 
@@ -82,7 +83,6 @@ class ContactBloc extends Bloc<ContactEvent, List<Contact>> {
     Contact('Smith', '+9876543210', 'Hi! How are you?'),
     Contact('ve', '+1234567890', 'Hello there!'),
     Contact('Jishi', '+9876543210', 'Hi! How are you?'),
-    // Add more contacts...
   ];
 
   ContactBloc() : super([]);

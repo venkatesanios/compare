@@ -5,6 +5,7 @@ class DealerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyTabView(),
     );
   }
@@ -16,51 +17,201 @@ class MyTabView extends StatefulWidget {
 }
 
 class _MyTabViewState extends State<MyTabView> {
-  List<String> gentrallist = [
-    "Use USA units",
-    "Water accumulation unit",
-    "Cycles",
-    "Priority",
-    "Named groups",
-    "Start together",
-    "Dosage per area",
-    "Evaporation control",
-    "Notify about fertilizer left",
-    "Accumulated radiation",
-    "Special water before",
-    "Use fertilizer sets",
-  ];
-  List<String> valvedefaultlist = [
-    "Local fert mode liter/m3",
-    "Local fert mode sec/min",
-    "Local fert mode min.sec/m3",
-    "Local fert mode min.sec/m3",
-    "Local fert liter/min",
-    "Local fert proportional",
-  ];
-  List<String> fertilizationlist = [
-    "Local fert mode l/m3",
-    "Local fert mode sec/min",
-    "Local fert mode min sec/m3",
-    "Local fert l/min",
-    "Local fert proportional",
-    "Local fert bulk by time",
-    "Local fert bulk by volume",
-    "Central fert mode l/m3",
-    "Centrall fert mode sec/min",
-    "Central fert mode min sec/m3",
-    "Central fert l/min",
-    "Central fert proportional",
+  List<Map<String, dynamic>> gentrallist = [
+    {
+      'name': 'Use USA units',
+      'value': "0",
+      'type': '1',
+    },
+    {
+      'name': 'Water accumulation unit',
+      'value': "1",
+      'type': '2',
+    },
+    {
+      'name': 'Cycles',
+      'value': "2",
+      'type': '2',
+    },
+    {
+      'name': 'Priority',
+      'value': "3",
+      'type': '3',
+    },
+    {
+      'name': 'Named groups',
+      'value': "4",
+      'type': '1',
+    },
+    {
+      'name': 'Start together',
+      'value': "5",
+      'type': '2',
+    },
+    {
+      'name': 'Dosage per area',
+      'value': "6",
+      'type': '3',
+    },
+    {
+      'name': 'Evaporation control',
+      'value': "7",
+      'type': '1',
+    },
+    {
+      'name': 'Notify about fertilizer left',
+      'value': "8",
+      'type': '2',
+    },
+    {
+      'name': 'Accumulated radiation',
+      'value': "9",
+      'type': '3',
+    },
+    {
+      'name': 'Special water before',
+      'value': "10",
+      'type': '1',
+    },
+    {
+      'name': 'Use fertilizer sets',
+      'value': "11",
+      'type': '2',
+    },
   ];
 
-  List<String> memorylist = [
-    "Programs",
-    "Groups",
-    "Water jobs",
-    "Fert jobs",
-    "Reports",
-    "Virtual water meter",
-    "Condition",
+  List<Map<String, dynamic>> valvedefaultlist = [
+    {
+      'name': "Local fert mode liter/m3",
+      'value': '3',
+      'type': '2',
+    },
+    {
+      'name': "Local fert mode sec/min",
+      'value': '5',
+      'type': '2',
+    },
+    {
+      'name': "Local fert mode min.sec/m3",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Local fert mode min.sec/m3",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Local fert liter/min",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Local fert proportional",
+      'value': '1',
+      'type': '2',
+    },
+  ];
+
+  List<Map<String, dynamic>> fertilizationlist = [
+    {
+      'name': "Local fert mode l/m3",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Local fert mode sec/min",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Local fert mode min sec/m3",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Local fert l/min",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Local fert proportional",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Local fert bulk by time",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Local fert bulk by volume",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Central fert mode l/m3",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Centrall fert mode sec/min",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Central fert mode min sec/m3",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Central fert l/min",
+      'value': '1',
+      'type': '2',
+    },
+    {
+      'name': "Central fert proportional",
+      'value': '1',
+      'type': '2',
+    },
+  ];
+
+  List<Map<String, dynamic>> memorylist = [
+    {
+      'name': "Programs",
+      'value': "Program A",
+      'type': "2",
+    },
+    {
+      'name': "Groups",
+      'value': "Group 1",
+      'type': "2",
+    },
+    {
+      'name': "Water jobs",
+      'value': "Job 1",
+      'type': "2",
+    },
+    {
+      'name': "Fert jobs",
+      'value': "Job 2",
+      'type': "1",
+    },
+    {
+      'name': "Reports",
+      'value': "Report 1",
+      'type': "2",
+    },
+    {
+      'name': "Virtual water meter",
+      'value': "Meter 1",
+      'type': "2",
+    },
+    {
+      'name': "Condition",
+      'value': "Condition 1",
+      'type': "2",
+    },
   ];
 
   @override
@@ -91,21 +242,32 @@ class _MyTabViewState extends State<MyTabView> {
             ],
           ),
         ),
-        body: TabBarView(
-          children: [
-            buildTab('General'),
-            buildTab('Fertilizer'),
-            buildTab('Filter'),
-            buildTab('Memory'),
-          ],
+        body: Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: TabBarView(
+            children: [
+              buildTab('General'),
+              buildTab('Fertilizer'),
+              buildTab('Filter'),
+              buildTab('Memory'),
+            ],
+          ),
         ),
       ),
     );
   }
 
+  Color getTileColor(int index) {
+    final Color oddColor = const Color.fromARGB(255, 202, 231, 254);
+    final Color evenColor = Color.fromARGB(255, 185, 221, 253);
+
+    return index.isOdd ? oddColor : evenColor;
+  }
+
   Widget buildTab(String tabTitle) {
     int count = 0;
-    List Listofvalue = [];
+    int oddeven = 0;
+    List<Map<String, dynamic>> Listofvalue = [];
     if (tabTitle == "General") {
       count = gentrallist.length;
       Listofvalue = gentrallist;
@@ -120,80 +282,97 @@ class _MyTabViewState extends State<MyTabView> {
       Listofvalue = memorylist;
     }
     return ListView.builder(
-      itemCount: count, // Change this to the number of items you have.
+      itemCount: Listofvalue.length,
       itemBuilder: (context, index) {
-        if (index == 0) {
+        oddeven = index.isEven ? 0 : 1;
+        if (Listofvalue[index]['type'] == '1') {
           String selectedDropdownValue = 'hh:mm:ss';
-          // Include a dropdown for the first item.
-          return ListTile(
-            leading: Icon(Icons.account_balance),
-            title: Text('${Listofvalue[index]}'),
-            subtitle: Text(
-              'Details: ${Listofvalue[index]}',
-              style: TextStyle(fontSize: 11),
-            ),
-            trailing: DropdownButton<String>(
-              items: ['hh:mm:ss', 'm3', 'Lts/h'].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedDropdownValue = newValue!;
-                });
-
-                // Handle dropdown selection.
-              },
-              value: selectedDropdownValue, // Set the initial dropdown value.
-            ),
-          );
-        } else if (index == 1) {
-          return ListTile(
-            leading: Icon(Icons.sports_baseball),
-            title: Text('${Listofvalue[index]}'),
-            subtitle: Text(
-              'Details: ${Listofvalue[index]}',
-              style: TextStyle(fontSize: 11),
-            ),
-            trailing: SizedBox(
-              width: 150,
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: '00',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            Colors.grey), // Specify your desired border color
+          return Column(
+            children: [
+              Container(
+                color: index.isEven
+                    ? Color.fromARGB(255, 223, 239, 252)
+                    : Color.fromARGB(255, 192, 216, 252),
+                child: ListTile(
+                  leading: Icon(Icons.account_balance),
+                  title: Text('${Listofvalue[index]['name']}'),
+                  subtitle: Text(
+                    'Details: ${Listofvalue[index]['name']}',
+                    style: TextStyle(fontSize: 11),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors
-                            .blue), // Specify the border color when the field is focused
+                  trailing: DropdownButton<String>(
+                    items: ['hh:mm:ss', 'm3', 'Lts/h'].map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedDropdownValue = newValue!;
+                      });
+                    },
+                    value: selectedDropdownValue,
                   ),
                 ),
-                onChanged: (text) {
-                  // Handle text input changes.
-                },
               ),
-            ),
+            ],
+          );
+        } else if (Listofvalue[index]['type'] == '2') {
+          return Column(
+            children: [
+              Container(
+                color: index.isEven
+                    ? Color.fromARGB(255, 223, 239, 252)
+                    : Color.fromARGB(255, 192, 216, 252),
+                child: ListTile(
+                  leading: Icon(Icons.sports_baseball),
+                  title: Text('${Listofvalue[index]['name']}'),
+                  subtitle: Text(
+                    'Details: ${Listofvalue[index]['name']}',
+                    style: TextStyle(fontSize: 11),
+                  ),
+                  trailing: SizedBox(
+                    width: 50,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: '00',
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                      onChanged: (text) {},
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           );
         } else {
-          // Include a text input for other items.
-          return ListTile(
-            leading: Icon(Icons.abc_rounded),
-            title: Text('${Listofvalue[index]}'),
-            subtitle: Text(
-              'Details: ${Listofvalue[index]}',
-              style: TextStyle(fontSize: 11),
-            ),
-            trailing: Switch(
-              value: false, // Change this value according to your switch logic.
-              onChanged: (value) {
-                // Implement your switch logic here.
-              },
-            ),
+          return Column(
+            children: [
+              Container(
+                color: index.isEven
+                    ? Color.fromARGB(255, 223, 239, 252)
+                    : Color.fromARGB(255, 192, 216, 252),
+                child: ListTile(
+                  leading: Icon(Icons.abc_rounded),
+                  title: Text('${Listofvalue[index]['name']}'),
+                  subtitle: Text(
+                    'Details: ${Listofvalue[index]['name']}',
+                    style: TextStyle(fontSize: 11),
+                  ),
+                  trailing: Switch(
+                    value: false,
+                    onChanged: (value) {},
+                  ),
+                ),
+              ),
+            ],
           );
         }
       },
