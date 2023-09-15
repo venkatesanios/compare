@@ -242,89 +242,87 @@ class _MyTabViewState extends State<MyTabView> {
       body: Padding(
         padding: const EdgeInsets.all(2.0),
         child: Container(
-          child: GridView(children: [
-            Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black, // Border color
-                      width: 2.0, // Border width
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                          color: const Color.fromARGB(255, 177, 215, 246),
-                          child: Text('General')),
-                      Divider(height: 5),
-                      Container(
-                          width: 300, height: 450, child: buildTab('General')),
-                    ],
+          child: Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Border color
+                    width: 2.0, // Border width
                   ),
                 ),
-                Spacer(),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black, // Border color
-                      width: 2.0, // Border width
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                          color: const Color.fromARGB(255, 177, 215, 246),
-                          child: Text('Fertilizer')),
-                      Divider(height: 5),
-                      Container(
-                          width: 300,
-                          height: 450,
-                          child: buildTab('Fertilizer')),
-                    ],
+                child: Column(
+                  children: [
+                    Container(
+                        color: const Color.fromARGB(255, 177, 215, 246),
+                        child: Text('General')),
+                    Divider(height: 5),
+                    Container(
+                        width: 300, height: 450, child: buildTab('General')),
+                  ],
+                ),
+              ),
+              Spacer(),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Border color
+                    width: 2.0, // Border width
                   ),
                 ),
-                Spacer(),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black, // Border color
-                      width: 2.0, // Border width
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                          color: const Color.fromARGB(255, 177, 215, 246),
-                          child: Text('Filter')),
-                      Divider(height: 5),
-                      Container(
-                          width: 300, height: 450, child: buildTab('Filter')),
-                    ],
+                child: Column(
+                  children: [
+                    Container(
+                        color: const Color.fromARGB(255, 177, 215, 246),
+                        child: Text('Fertilizer')),
+                    Divider(height: 5),
+                    Container(
+                        width: 300,
+                        height: 450,
+                        child: buildTab('Fertilizer')),
+                  ],
+                ),
+              ),
+              Spacer(),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Border color
+                    width: 2.0, // Border width
                   ),
                 ),
-                Spacer(),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black, // Border color
-                      width: 2.0, // Border width
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                          color: const Color.fromARGB(255, 177, 215, 246),
-                          child: Text('Memory')),
-                      Divider(height: 5),
-                      Container(
-                          width: 300, height: 450, child: buildTab('Memory')),
-                    ],
+                child: Column(
+                  children: [
+                    Container(
+                        color: const Color.fromARGB(255, 177, 215, 246),
+                        child: Text('Filter')),
+                    Divider(height: 5),
+                    Container(
+                        width: 300, height: 450, child: buildTab('Filter')),
+                  ],
+                ),
+              ),
+              Spacer(),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Border color
+                    width: 2.0, // Border width
                   ),
                 ),
-              ],
-            ),
-          ]),
+                child: Column(
+                  children: [
+                    Container(
+                        color: const Color.fromARGB(255, 177, 215, 246),
+                        child: Text('Memory')),
+                    Divider(height: 5),
+                    Container(
+                        width: 300, height: 450, child: buildTab('Memory')),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
