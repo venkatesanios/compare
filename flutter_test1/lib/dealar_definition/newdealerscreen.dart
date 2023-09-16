@@ -218,26 +218,6 @@ class _MyTabViewState extends State<MyTabView> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Dealer Definition'),
-        // bottom: TabBar(
-        //   tabs: [
-        //     Tab(
-        //       text: 'General',
-        //       icon: Icon(Icons.ac_unit),
-        //     ),
-        //     Tab(
-        //       text: 'Fertilizer',
-        //       icon: Icon(Icons.free_breakfast),
-        //     ),
-        //     Tab(
-        //       text: 'Valve default',
-        //       icon: Icon(Icons.file_download_rounded),
-        //     ),
-        //     Tab(
-        //       text: 'Memory',
-        //       icon: Icon(Icons.memory),
-        //     ),
-        //   ],
-        // ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(2.0),
@@ -277,9 +257,7 @@ class _MyTabViewState extends State<MyTabView> {
                         child: Text('Fertilizer')),
                     Divider(height: 5),
                     Container(
-                        width: 300,
-                        height: 450,
-                        child: buildTab('Fertilizer')),
+                        width: 300, height: 450, child: buildTab('Fertilizer')),
                   ],
                 ),
               ),

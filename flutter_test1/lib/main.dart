@@ -4,6 +4,7 @@ import 'package:flutter_test1/alert.dart';
 import 'package:flutter_test1/bottomsheet.dart';
 import 'package:flutter_test1/dealar_definition/dealer_Screen.dart';
 import 'package:flutter_test1/dealar_definition/newdealerscreen.dart';
+import 'package:flutter_test1/dealar_definition/newfile.dart';
 import 'package:flutter_test1/geo_location.dart';
 import 'package:flutter_test1/get_location.dart';
 import 'package:flutter_test1/gkeyboard.dart';
