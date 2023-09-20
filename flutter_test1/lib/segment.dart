@@ -31,8 +31,8 @@ class SegmentedButtonApp extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Container(
                         width: double.infinity,
-                        margin: EdgeInsets.all(10.0),
-                        padding: EdgeInsets.only(left: 20.0),
+                        margin: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.only(left: 20.0),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             color: const Color.fromARGB(255, 207, 233, 244)),
@@ -41,16 +41,16 @@ class SegmentedButtonApp extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Container(
-                                padding: EdgeInsets.only(top: 10.0),
+                                padding: const EdgeInsets.only(top: 10.0),
                                 width: double.infinity,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       'Device name :$index ',
-                                      style: TextStyle(fontSize: 14),
+                                      style: const TextStyle(fontSize: 14),
                                     ),
-                                    Text('Device IMEI no :  ',
+                                    const Text('Device IMEI no :  ',
                                         style: TextStyle(fontSize: 14)),
                                     Banner(
                                       message: 'message.tr',
@@ -60,7 +60,7 @@ class SegmentedButtonApp extends StatelessWidget {
                                         height: 100,
                                         width: double.infinity,
                                         color: Colors.green,
-                                        child: Text(
+                                        child: const Text(
                                             'test \n test1 123456 test \n test1 123456 test \n test1 123456'),
                                       ),
                                     )
@@ -75,14 +75,14 @@ class SegmentedButtonApp extends StatelessWidget {
                                   color: Colors.red,
                                   borderRadius: BorderRadius.circular(5)),
                               child: IconButton(
-                                padding: EdgeInsets.all(0),
+                                padding: const EdgeInsets.all(0),
                                 color: Colors.white,
                                 onPressed: () {
                                   // setState(() {
                                   // SellDevicePvd.removeFunction(SellDevicePvd.getList[index]);
                                   // });
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.clear_rounded,
                                   size: 18,
                                 ),
@@ -95,15 +95,15 @@ class SegmentedButtonApp extends StatelessWidget {
                     },
                   ),
                 ),
-                Spacer(),
-                SizedBox(height: 20),
-                Text('title2.tr'),
+                const Spacer(),
+                const SizedBox(height: 20),
+                const Text('title2.tr'),
                 Container(
                   child: MultipleChoice(
                     name: ['first', 'second', 'third', 'four'],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 TextField(
                   keyboardType:
                       TextInputType.number, // Set the keyboard type to number
@@ -122,7 +122,7 @@ class SegmentedButtonApp extends StatelessWidget {
                       PermissionClass()
                           .checkPermission(context, Permission.locationAlways);
                     },
-                    child: Text('Permission'))
+                    child: const Text('Permission'))
               ],
             ),
           ),

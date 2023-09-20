@@ -30,7 +30,7 @@ class _ProductFormState extends State<ProductForm> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Product'),
+        title: const Text('Add Product'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -42,13 +42,13 @@ class _ProductFormState extends State<ProductForm> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InputHeading(heading: 'Model'),
+                    const InputHeading(heading: 'Model'),
                     Container(
                       color: Colors.white,
                       width: double.infinity,
                       child: MyDropDown(
                         initialValue: addProductPvd.initialModel,
-                        itemList: [
+                        itemList: const [
                           '--/--',
                           'Model 1',
                           'Model 2',
@@ -58,25 +58,25 @@ class _ProductFormState extends State<ProductForm> {
                       ),
                     ),
                     if (addProductPvd.initialModel == '--/--')
-                      Text(
+                      const Text(
                         'Please select a Model',
                         style: TextStyle(color: Colors.red),
                       ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InputHeading(heading: 'Category'),
+                    const InputHeading(heading: 'Category'),
                     Container(
                       color: Colors.white,
                       width: double.infinity,
                       child: MyDropDown(
                         initialValue: addProductPvd.initialcategory,
-                        itemList: [
+                        itemList: const [
                           '--/--',
                           'Category 1',
                           'Category 2',
@@ -86,25 +86,25 @@ class _ProductFormState extends State<ProductForm> {
                       ),
                     ),
                     if (addProductPvd.initialcategory == '--/--')
-                      Text(
+                      const Text(
                         'Please select a category',
                         style: TextStyle(color: Colors.red),
                       ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InputHeading(heading: 'Product Status'),
+                    const InputHeading(heading: 'Product Status'),
                     Container(
                       color: Colors.white,
                       width: double.infinity,
                       child: MyDropDown(
                         initialValue: addProductPvd.initialProductstatus,
-                        itemList: [
+                        itemList: const [
                           '--/--',
                           'Admin',
                           'Stand BY',
@@ -113,7 +113,7 @@ class _ProductFormState extends State<ProductForm> {
                       ),
                     ),
                     if (addProductPvd.initialProductstatus == '--/--')
-                      Text(
+                      const Text(
                         'Please select a product status',
                         style: TextStyle(color: Colors.red),
                       ),
@@ -121,7 +121,7 @@ class _ProductFormState extends State<ProductForm> {
                 ),
                 TextFormField(
                   initialValue: productViewModel.deviceId,
-                  decoration: InputDecoration(labelText: 'Device ID'),
+                  decoration: const InputDecoration(labelText: 'Device ID'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Device ID is required';
@@ -133,7 +133,7 @@ class _ProductFormState extends State<ProductForm> {
                 ),
                 TextFormField(
                   initialValue: productViewModel.description,
-                  decoration: InputDecoration(labelText: 'Description'),
+                  decoration: const InputDecoration(labelText: 'Description'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Description is required';
@@ -145,7 +145,7 @@ class _ProductFormState extends State<ProductForm> {
                 ),
                 TextFormField(
                   initialValue: productViewModel.warranty,
-                  decoration: InputDecoration(labelText: 'Warranty'),
+                  decoration: const InputDecoration(labelText: 'Warranty'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Warranty is required';
@@ -161,7 +161,8 @@ class _ProductFormState extends State<ProductForm> {
                   onChanged: (newValue) {
                     productViewModel.updateProductCurrentDate(newValue!);
                   },
-                  decoration: InputDecoration(labelText: 'Manufacturing Date'),
+                  decoration:
+                      const InputDecoration(labelText: 'Manufacturing Date'),
                   onShowPicker: (context, currentValue) async {
                     final date = await showDatePicker(
                       context: context,
@@ -182,7 +183,7 @@ class _ProductFormState extends State<ProductForm> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -198,13 +199,13 @@ class _ProductFormState extends State<ProductForm> {
                           productViewModel.saveProduct();
                         }
                       },
-                      child: Text('ADD'),
+                      child: const Text('ADD'),
                     ),
                     ElevatedButton(
                       onPressed: () {
                         // Handle Cancel button
                       },
-                      child: Text('Cancel'),
+                      child: const Text('Cancel'),
                     ),
                   ],
                 ),

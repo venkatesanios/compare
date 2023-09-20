@@ -5,7 +5,7 @@ class MyAppkey extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: Text('Custom PIN Entry Keyboard')),
+          appBar: AppBar(title: const Text('Custom PIN Entry Keyboard')),
           body: Center(
             child: PinEntryKeyboard(),
           )),
@@ -44,18 +44,18 @@ class _PinEntryKeyboardState extends State<PinEntryKeyboard> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
+        const Text(
           'Enter PIN:',
           style: TextStyle(fontSize: 24),
         ),
         Text(
           enteredPin,
-          style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
         ),
-        Spacer(),
+        const Spacer(),
         GridView.builder(
           shrinkWrap: true,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
           ),
           itemBuilder: (context, index) {
@@ -80,13 +80,13 @@ class _PinEntryKeyboardState extends State<PinEntryKeyboard> {
               },
               child: Container(
                 alignment: Alignment.center,
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(15),
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(15),
                 height: 10,
                 width: 0,
                 child: Text(
                   keys[index],
-                  style: TextStyle(fontSize: 24, color: Colors.black),
+                  style: const TextStyle(fontSize: 24, color: Colors.black),
                 ),
               ),
             );

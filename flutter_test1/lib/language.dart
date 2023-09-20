@@ -21,12 +21,12 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   String selectedLanguage = 'English';
 
   final List<Map<String, dynamic>> availableLanguages = [
-    {'name': 'English', 'locale': Locale('en', 'US')},
-    {'name': 'Tamil', 'locale': Locale('ta', 'IN')},
-    {'name': 'Malayalam', 'locale': Locale('ml', 'IN')},
-    {'name': 'Kannada', 'locale': Locale('kn', 'IN')},
-    {'name': 'Hindi', 'locale': Locale('hi', 'IN')},
-    {'name': 'Telugu', 'locale': Locale('te', 'IN')},
+    {'name': 'English', 'locale': const Locale('en', 'US')},
+    {'name': 'Tamil', 'locale': const Locale('ta', 'IN')},
+    {'name': 'Malayalam', 'locale': const Locale('ml', 'IN')},
+    {'name': 'Kannada', 'locale': const Locale('kn', 'IN')},
+    {'name': 'Hindi', 'locale': const Locale('hi', 'IN')},
+    {'name': 'Telugu', 'locale': const Locale('te', 'IN')},
   ];
 
   updateLanguage(Locale locale) {
@@ -41,14 +41,14 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Language'),
+        title: const Text('Language'),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Text(
                 'Select one language',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -85,9 +85,9 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              SegmentedButtonApp()));
+                              const SegmentedButtonApp()));
                     },
-                    child: Text('Next.tr')))
+                    child: const Text('Next.tr')))
           ],
         ),
       ),

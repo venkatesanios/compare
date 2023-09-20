@@ -81,13 +81,13 @@ class MetadataScreen extends StatelessWidget {
 
             border: TableBorder.all(width: 1.0, style: BorderStyle.solid),
             // dividerThickness: 5.0,
-            columns: [
+            columns: const [
               DataColumn(label: Text('Meta Data')),
               DataColumn(
                 label: Text('Details'),
               ),
             ],
-            rows: [
+            rows: const [
               DataRow(cells: [
                 DataCell(Text('Name')),
                 DataCell(Text('Thottam Pump')),

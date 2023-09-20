@@ -217,7 +217,7 @@ class _MyTabViewState extends State<MyTabView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dealer Definition'),
+        title: const Text('Dealer Definition'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(2.0),
@@ -235,14 +235,14 @@ class _MyTabViewState extends State<MyTabView> {
                   children: [
                     Container(
                         color: const Color.fromARGB(255, 177, 215, 246),
-                        child: Text('General')),
-                    Divider(height: 5),
+                        child: const Text('General')),
+                    const Divider(height: 5),
                     Container(
                         width: 300, height: 450, child: buildTab('General')),
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -254,14 +254,14 @@ class _MyTabViewState extends State<MyTabView> {
                   children: [
                     Container(
                         color: const Color.fromARGB(255, 177, 215, 246),
-                        child: Text('Fertilizer')),
-                    Divider(height: 5),
+                        child: const Text('Fertilizer')),
+                    const Divider(height: 5),
                     Container(
                         width: 300, height: 450, child: buildTab('Fertilizer')),
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -273,14 +273,14 @@ class _MyTabViewState extends State<MyTabView> {
                   children: [
                     Container(
                         color: const Color.fromARGB(255, 177, 215, 246),
-                        child: Text('Filter')),
-                    Divider(height: 5),
+                        child: const Text('Filter')),
+                    const Divider(height: 5),
                     Container(
                         width: 300, height: 450, child: buildTab('Filter')),
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -292,8 +292,8 @@ class _MyTabViewState extends State<MyTabView> {
                   children: [
                     Container(
                         color: const Color.fromARGB(255, 177, 215, 246),
-                        child: Text('Memory')),
-                    Divider(height: 5),
+                        child: const Text('Memory')),
+                    const Divider(height: 5),
                     Container(
                         width: 300, height: 450, child: buildTab('Memory')),
                   ],
@@ -308,7 +308,7 @@ class _MyTabViewState extends State<MyTabView> {
 
   Color getTileColor(int index) {
     final Color oddColor = const Color.fromARGB(255, 202, 231, 254);
-    final Color evenColor = Color.fromARGB(255, 185, 221, 253);
+    final Color evenColor = const Color.fromARGB(255, 185, 221, 253);
 
     return index.isOdd ? oddColor : evenColor;
   }
@@ -340,28 +340,31 @@ class _MyTabViewState extends State<MyTabView> {
             children: [
               Container(
                 color: index.isEven
-                    ? Color.fromARGB(255, 223, 239, 252)
-                    : Color.fromARGB(255, 192, 216, 252),
-                child: ListTile(
-                  leading: Icon(Icons.account_balance),
-                  title: Text('${Listofvalue[index]['name']}'),
-                  subtitle: Text(
-                    'Details: ${Listofvalue[index]['name']}',
-                    style: TextStyle(fontSize: 11),
-                  ),
-                  trailing: DropdownButton<String>(
-                    items: ['hh:mm:ss', 'm3', 'Lts/h'].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedDropdownValue = newValue!;
-                      });
-                    },
-                    value: selectedDropdownValue,
+                    ? const Color.fromARGB(255, 223, 239, 252)
+                    : const Color.fromARGB(255, 192, 216, 252),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    leading: const Icon(Icons.account_balance),
+                    title: Text('${Listofvalue[index]['name']}'),
+                    subtitle: Text(
+                      'Details: ${Listofvalue[index]['name']}',
+                      style: const TextStyle(fontSize: 11),
+                    ),
+                    trailing: DropdownButton<String>(
+                      items: ['hh:mm:ss', 'm3', 'Lts/h'].map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          selectedDropdownValue = newValue!;
+                        });
+                      },
+                      value: selectedDropdownValue,
+                    ),
                   ),
                 ),
               ),
@@ -372,29 +375,32 @@ class _MyTabViewState extends State<MyTabView> {
             children: [
               Container(
                 color: index.isEven
-                    ? Color.fromARGB(255, 223, 239, 252)
-                    : Color.fromARGB(255, 192, 216, 252),
-                child: ListTile(
-                  leading: Icon(Icons.sports_baseball),
-                  title: Text('${Listofvalue[index]['name']}'),
-                  subtitle: Text(
-                    'Details: ${Listofvalue[index]['name']}',
-                    style: TextStyle(fontSize: 11),
-                  ),
-                  trailing: SizedBox(
-                    width: 50,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: '00',
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
+                    ? const Color.fromARGB(255, 223, 239, 252)
+                    : const Color.fromARGB(255, 192, 216, 252),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    leading: const Icon(Icons.sports_baseball),
+                    title: Text('${Listofvalue[index]['name']}'),
+                    subtitle: Text(
+                      'Details: ${Listofvalue[index]['name']}',
+                      style: const TextStyle(fontSize: 11),
+                    ),
+                    trailing: SizedBox(
+                      width: 50,
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          labelText: '00',
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
                         ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
+                        onChanged: (text) {},
+                        textAlign: TextAlign.center,
                       ),
-                      onChanged: (text) {},
-                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -406,18 +412,21 @@ class _MyTabViewState extends State<MyTabView> {
             children: [
               Container(
                 color: index.isEven
-                    ? Color.fromARGB(255, 223, 239, 252)
-                    : Color.fromARGB(255, 192, 216, 252),
-                child: ListTile(
-                  leading: Icon(Icons.abc_rounded),
-                  title: Text('${Listofvalue[index]['name']}'),
-                  subtitle: Text(
-                    'Details: ${Listofvalue[index]['name']}',
-                    style: TextStyle(fontSize: 11),
-                  ),
-                  trailing: Switch(
-                    value: false,
-                    onChanged: (value) {},
+                    ? const Color.fromARGB(255, 223, 239, 252)
+                    : const Color.fromARGB(255, 192, 216, 252),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    leading: const Icon(Icons.abc_rounded),
+                    title: Text('${Listofvalue[index]['name']}'),
+                    subtitle: Text(
+                      'Details: ${Listofvalue[index]['name']}',
+                      style: const TextStyle(fontSize: 11),
+                    ),
+                    trailing: Switch(
+                      value: false,
+                      onChanged: (value) {},
+                    ),
                   ),
                 ),
               ),

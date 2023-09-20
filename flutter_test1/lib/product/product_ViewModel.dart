@@ -57,13 +57,13 @@ class ProductViewModel extends ChangeNotifier {
 
   // Save the product data (you can implement your logic here)
   void saveProduct() {
-    print('Add Product Data');
-    print('Category: $_category');
-    print('Model Type: $_modelType');
-    print('Product Status: $_productStatus');
-    print('Device ID: $_deviceId');
-    print('Description: $_description');
-    print('Warranty: $_warranty');
-    print('Current Date: $_currentDate');
+    // print('Add Product Data');
+    // print('Category: $_category');
+    // print('Model Type: $_modelType');
+    // print('Product Status: $_productStatus');
+    // print('Device ID: $_deviceId');
+    // print('Description: $_description');
+    // print('Warranty: $_warranty');
+    // print('Current Date: $_currentDate');
   }
 }

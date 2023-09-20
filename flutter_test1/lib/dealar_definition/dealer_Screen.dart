@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class DealerScreen extends StatelessWidget {
   @override
@@ -249,10 +250,10 @@ class MobileContent extends StatelessWidget {
           padding: const EdgeInsets.all(2.0),
           child: TabBarView(
             children: [
-              buildTab('General', true),
-              buildTab('Fertilizer', true),
-              buildTab('Filter', true),
-              buildTab('Memory', true),
+              buildTab('General', false),
+              buildTab('Fertilizer', false),
+              buildTab('Filter', false),
+              buildTab('Memory', false),
             ],
           ),
         ),
@@ -347,8 +348,12 @@ class MobileContent extends StatelessWidget {
                         trailing: SizedBox(
                           width: 50,
                           child: TextField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp("[0-9]"),
+                              ),
+                            ],
                             decoration: const InputDecoration(
-                              labelText: '00',
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey),
                               ),
@@ -686,27 +691,30 @@ class WebContent extends StatelessWidget {
                       color: index.isEven
                           ? const Color.fromARGB(255, 223, 239, 252)
                           : const Color.fromARGB(255, 192, 216, 252),
-                      child: ListTile(
-                        leading: const Icon(Icons.account_balance),
-                        title: Text('${Listofvalue[index]['name']}'),
-                        subtitle: Text(
-                          'Details: ${Listofvalue[index]['name']}',
-                          style: const TextStyle(fontSize: 11),
-                        ),
-                        trailing: DropdownButton<String>(
-                          items:
-                              ['hh:mm:ss', 'm3', 'Lts/h'].map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            // setState(() {
-                            //   selectedDropdownValue = newValue!;
-                            // });
-                          },
-                          value: selectedDropdownValue,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          leading: const Icon(Icons.account_balance),
+                          title: Text('${Listofvalue[index]['name']}'),
+                          subtitle: Text(
+                            'Details: ${Listofvalue[index]['name']}',
+                            style: const TextStyle(fontSize: 11),
+                          ),
+                          trailing: DropdownButton<String>(
+                            items:
+                                ['hh:mm:ss', 'm3', 'Lts/h'].map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              // setState(() {
+                              //   selectedDropdownValue = newValue!;
+                              // });
+                            },
+                            value: selectedDropdownValue,
+                          ),
                         ),
                       ),
                     ),
@@ -729,8 +737,14 @@ class WebContent extends StatelessWidget {
                         trailing: SizedBox(
                           width: 50,
                           child: TextField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp("[0-9]"),
+                              ),
+                            ],
+                            keyboardType:
+                                TextInputType.numberWithOptions(decimal: true),
                             decoration: const InputDecoration(
-                              labelText: '00',
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey),
                               ),

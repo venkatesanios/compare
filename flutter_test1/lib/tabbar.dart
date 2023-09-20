@@ -32,21 +32,21 @@ class _TabLayoutExampleState extends State<TabLayoutExample>
   }
 
   static const List<Tab> _tabs = [
-    const Tab(icon: Icon(Icons.looks_one), child: const Text('Tab One')),
-    const Tab(icon: Icon(Icons.looks_two), text: 'Tab Two'),
-    const Tab(icon: Icon(Icons.looks_3), text: 'Tab Three'),
-    const Tab(icon: Icon(Icons.looks_4), text: 'Tab Four'),
-    const Tab(icon: Icon(Icons.looks_5), text: 'Tab Five'),
-    const Tab(icon: Icon(Icons.looks_6), text: 'Tab Six'),
+    Tab(icon: Icon(Icons.looks_one), child: Text('Tab One')),
+    Tab(icon: Icon(Icons.looks_two), text: 'Tab Two'),
+    Tab(icon: Icon(Icons.looks_3), text: 'Tab Three'),
+    Tab(icon: Icon(Icons.looks_4), text: 'Tab Four'),
+    Tab(icon: Icon(Icons.looks_5), text: 'Tab Five'),
+    Tab(icon: Icon(Icons.looks_6), text: 'Tab Six'),
   ];
 
   static const List<Widget> _views = [
-    const Center(child: const Text('Content of Tab One')),
-    const Center(child: const Text('Content of Tab Two')),
-    const Center(child: const Text('Content of Tab Three')),
-    const Center(child: const Text('Content of Tab Four')),
-    const Center(child: const Text('Content of Tab Five')),
-    const Center(child: const Text('Content of Tab Six')),
+    Center(child: Text('Content of Tab One')),
+    Center(child: Text('Content of Tab Two')),
+    Center(child: Text('Content of Tab Three')),
+    Center(child: Text('Content of Tab Four')),
+    Center(child: Text('Content of Tab Five')),
+    Center(child: Text('Content of Tab Six')),
   ];
 
   @override
@@ -65,12 +65,12 @@ class _TabLayoutExampleState extends State<TabLayoutExample>
               overlayColor:
                   MaterialStateColor.resolveWith((Set<MaterialState> states) {
                 if (states.contains(MaterialState.pressed)) {
-                  return Color.fromARGB(255, 216, 60, 206);
+                  return const Color.fromARGB(255, 216, 60, 206);
                 }
                 if (states.contains(MaterialState.focused)) {
                   return Colors.orange;
                 } else if (states.contains(MaterialState.hovered)) {
-                  return Color.fromARGB(255, 216, 60, 206);
+                  return const Color.fromARGB(255, 216, 60, 206);
                 }
 
                 return Colors.transparent;
@@ -83,10 +83,10 @@ class _TabLayoutExampleState extends State<TabLayoutExample>
                 border:
                     Border.all(color: const Color.fromARGB(255, 54, 244, 155)),
                 borderRadius: BorderRadius.circular(10),
-                color: Color.fromARGB(255, 216, 60, 206),
+                color: const Color.fromARGB(255, 216, 60, 206),
               ),
               isScrollable: true,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               onTap: (int index) {
                 print('Tab $index is tapped');
               },

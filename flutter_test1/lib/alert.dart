@@ -23,13 +23,14 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Alert'),
+          title: const Text('Alert'),
           content: _showTextInput
               ? TextField(
                   controller: _textController,
-                  decoration: InputDecoration(hintText: 'Enter your text'),
+                  decoration:
+                      const InputDecoration(hintText: 'Enter your text'),
                 )
-              : Text('Click OK to show text input'),
+              : const Text('Click OK to show text input'),
           actions: [
             TextButton(
               onPressed: () {
@@ -42,14 +43,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('Warning'),
-                        content: Text('Please enter a value.'),
+                        title: const Text('Warning'),
+                        content: const Text('Please enter a value.'),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text('OK'),
+                            child: const Text('OK'),
                           ),
                         ],
                       );
@@ -59,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.of(context).pop();
                 }
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
             TextButton(
               onPressed: () {
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   _showTextInput = false;
                 });
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
           ],
         );
@@ -86,14 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Alert Example'),
+        title: const Text('Alert Example'),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             _showAlertDialog(context);
           },
-          child: Text('Show Alert'),
+          child: const Text('Show Alert'),
         ),
       ),
     );

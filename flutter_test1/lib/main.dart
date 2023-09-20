@@ -54,7 +54,7 @@ class ListViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contact List'),
+        title: const Text('Contact List'),
       ),
       body: Column(
         children: [
@@ -104,7 +104,7 @@ class SearchBar extends StatelessWidget {
       onChanged: (query) {
         context.read<ContactBloc>().add(ContactEvent.filterContacts);
       },
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Search',
         prefixIcon: Icon(Icons.search),
       ),
@@ -143,7 +143,7 @@ class ContactCard extends StatelessWidget {
         ),
         title: Text(contact.name),
         subtitle: Text(contact.message),
-        trailing: Icon(Icons.message),
+        trailing: const Icon(Icons.message),
       ),
     );
   }
@@ -162,19 +162,19 @@ class MetadataItem extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           value,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
       ],
     );
   }
