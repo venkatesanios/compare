@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test1/alert.dart';
 import 'package:flutter_test1/bottomsheet.dart';
+import 'package:flutter_test1/dealar_definition/constant/customtext.dart';
 import 'package:flutter_test1/dealar_definition/dealer_Screen.dart';
 import 'package:flutter_test1/dealar_definition/newdealerscreen.dart';
 import 'package:flutter_test1/dealar_definition/newfile.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_test1/geo_location.dart';
 import 'package:flutter_test1/get_location.dart';
 import 'package:flutter_test1/gkeyboard.dart';
 import 'package:flutter_test1/googlemap.dart';
+import 'package:flutter_test1/keyboard_dismiss.dart';
 import 'package:flutter_test1/language.dart';
 import 'package:flutter_test1/metadata.dart';
 import 'package:flutter_test1/product/product_Screen.dart';
@@ -19,16 +21,18 @@ import 'package:flutter_test1/tabbar.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context) => ProductViewModel()),
-      ChangeNotifierProvider(create: (context) => AddProductProvider()),
+  runApp(DismissKeyboard(
+    child: MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ProductViewModel()),
+        ChangeNotifierProvider(create: (context) => AddProductProvider()),
 
-      // ChangeNotifierProvider(create: (context) => CustomerDevicePvd()),
-      // ChangeNotifierProvider(create: (context) => SellDeviceProvider()),
-      // ChangeNotifierProvider(create: (context) => DeviceListViewModel()),
-    ],
-    child: DealerScreen(),
+        // ChangeNotifierProvider(create: (context) => CustomerDevicePvd()),
+        // ChangeNotifierProvider(create: (context) => SellDeviceProvider()),
+        // ChangeNotifierProvider(create: (context) => DeviceListViewModel()),
+      ],
+      child: MyApp3(),
+    ),
   ));
 }
 

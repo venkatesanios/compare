@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_test1/keyboard_dismiss.dart';
+import 'package:flutter_test1/sevices/http_services.dart';
 
 class DealerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LayoutBuilder(
-        builder: (context, constraints) {
-          if (constraints.maxWidth <= 800) {
-            // Render mobile content
-            return MobileContent();
-          } else {
-            // Render web content
-            return WebContent();
-          }
-        },
+    return DismissKeyboard(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth <= 800) {
+              // Render mobile content
+              return MobileContent();
+            } else {
+              // Render web content
+              return WebContent();
+            }
+          },
+        ),
       ),
     );
   }
@@ -247,7 +251,7 @@ class MobileContent extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 70),
           child: TabBarView(
             children: [
               buildTab('General', false),
@@ -258,7 +262,18 @@ class MobileContent extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () async {
+            Map<String, Object> body = {
+              "categoryId": '1',
+              "modifyUser": '1',
+            };
+            final response =
+                await HttpService().putRequest("inactiveCategory", body);
+            print('response:------------$response');
+
+            // final response2 = await HttpService().putRequest("updateUser", body);
+            // print(response2);
+          },
           child: Icon(Icons.send),
         ),
       ),
@@ -295,7 +310,6 @@ class MobileContent extends StatelessWidget {
                 ),
               )
             : Container(),
-        // const Divider(color: Colors.grey),
         Flexible(
           child: ListView.builder(
             itemCount: Listofvalue.length,
@@ -363,9 +377,13 @@ class MobileContent extends StatelessWidget {
                           child: TextField(
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
-                                RegExp("[0-9]"),
+                                // RegExp("[0-9]"), /^\d*\.?\d*$/
+                                RegExp('[0-9,.]'),
+                                // RegExp(r'^\d{3}\.\d$'),
                               ),
                             ],
+                            keyboardType:
+                                TextInputType.numberWithOptions(decimal: true),
                             decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey),
