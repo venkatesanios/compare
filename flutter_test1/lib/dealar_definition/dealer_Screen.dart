@@ -8,7 +8,7 @@ class DealerScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth <= 600) {
+          if (constraints.maxWidth <= 800) {
             // Render mobile content
             return MobileContent();
           } else {
@@ -257,6 +257,10 @@ class MobileContent extends StatelessWidget {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.send),
+        ),
       ),
     );
   }
@@ -291,7 +295,7 @@ class MobileContent extends StatelessWidget {
                 ),
               )
             : Container(),
-        const Divider(color: Colors.white),
+        // const Divider(color: Colors.grey),
         Flexible(
           child: ListView.builder(
             itemCount: Listofvalue.length,
@@ -302,9 +306,9 @@ class MobileContent extends StatelessWidget {
                 return Column(
                   children: [
                     Container(
-                      color: index.isEven
-                          ? const Color.fromARGB(255, 223, 239, 252)
-                          : const Color.fromARGB(255, 192, 216, 252),
+                      // color: index.isEven
+                      //     ? const Color.fromARGB(255, 223, 239, 252)
+                      //     : const Color.fromARGB(255, 192, 216, 252),
                       child: ListTile(
                         leading: const Icon(Icons.account_balance),
                         title: Text('${Listofvalue[index]['name']}'),
@@ -329,15 +333,24 @@ class MobileContent extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        left: 70,
+                      ),
+                      child: Divider(
+                        height: 1.0,
+                        color: Colors.grey,
+                      ),
+                    ),
                   ],
                 );
               } else if (Listofvalue[index]['type'] == '2') {
                 return Column(
                   children: [
                     Container(
-                      color: index.isEven
-                          ? const Color.fromARGB(255, 223, 239, 252)
-                          : const Color.fromARGB(255, 192, 216, 252),
+                      // color: index.isEven
+                      //     ? const Color.fromARGB(255, 223, 239, 252)
+                      //     : const Color.fromARGB(255, 192, 216, 252),
                       child: ListTile(
                         leading: const Icon(Icons.sports_baseball),
                         title: Text('${Listofvalue[index]['name']}'),
@@ -367,15 +380,24 @@ class MobileContent extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        left: 70,
+                      ),
+                      child: Divider(
+                        height: 1.0,
+                        color: Colors.grey,
+                      ),
+                    ),
                   ],
                 );
               } else {
                 return Column(
                   children: [
                     Container(
-                      color: index.isEven
-                          ? const Color.fromARGB(255, 223, 239, 252)
-                          : const Color.fromARGB(255, 192, 216, 252),
+                      // color: index.isEven
+                      //     ? const Color.fromARGB(255, 223, 239, 252)
+                      //     : const Color.fromARGB(255, 192, 216, 252),
                       child: ListTile(
                         leading: const Icon(Icons.abc_rounded),
                         title: Text('${Listofvalue[index]['name']}'),
@@ -387,6 +409,15 @@ class MobileContent extends StatelessWidget {
                           value: false,
                           onChanged: (value) {},
                         ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        left: 70,
+                      ),
+                      child: Divider(
+                        height: 1.0,
+                        color: Colors.grey,
                       ),
                     ),
                   ],
@@ -614,28 +645,28 @@ class WebContent extends StatelessWidget {
             childAspectRatio: 0.5),
         children: <Widget>[
           Container(
-            // color: Colors.blue.shade100,
+            color: Color.fromARGB(255, 223, 239, 252),
             margin: const EdgeInsets.all(5),
             child: Center(
               child: buildTab('General', true),
             ),
           ),
           Container(
-            //color: Colors.blue.shade200,
+            color: Color.fromARGB(255, 223, 239, 252),
             margin: const EdgeInsets.all(5),
             child: Center(
               child: buildTab('Fertilizer', true),
             ),
           ),
           Container(
-            //color: Colors.blue.shade200,
+            color: Color.fromARGB(255, 223, 239, 252),
             margin: const EdgeInsets.all(5),
             child: Center(
               child: buildTab('Filter', true),
             ),
           ),
           Container(
-            // color: Colors.blue.shade200, Memory
+            color: Color.fromARGB(255, 223, 239, 252),
             margin: const EdgeInsets.all(5),
             child: Center(
               child: buildTab('Memory', true),
@@ -643,6 +674,10 @@ class WebContent extends StatelessWidget {
           ),
           // Add more GridItem widgets as needed
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.send),
       ),
     );
   }
@@ -677,7 +712,7 @@ class WebContent extends StatelessWidget {
                 ),
               )
             : Container(),
-        const Divider(color: Colors.white),
+        const Divider(color: Colors.grey),
         Flexible(
           child: ListView.builder(
             itemCount: Listofvalue.length,
@@ -688,9 +723,9 @@ class WebContent extends StatelessWidget {
                 return Column(
                   children: [
                     Container(
-                      color: index.isEven
-                          ? const Color.fromARGB(255, 223, 239, 252)
-                          : const Color.fromARGB(255, 192, 216, 252),
+                      // color: index.isEven
+                      //     ? const Color.fromARGB(255, 223, 239, 252)
+                      //     : const Color.fromARGB(255, 192, 216, 252),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
@@ -718,15 +753,24 @@ class WebContent extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        left: 70,
+                      ),
+                      child: Divider(
+                        height: 1.0,
+                        color: Colors.grey,
+                      ),
+                    ),
                   ],
                 );
               } else if (Listofvalue[index]['type'] == '2') {
                 return Column(
                   children: [
                     Container(
-                      color: index.isEven
-                          ? const Color.fromARGB(255, 223, 239, 252)
-                          : const Color.fromARGB(255, 192, 216, 252),
+                      // color: index.isEven
+                      //     ? const Color.fromARGB(255, 223, 239, 252)
+                      //     : const Color.fromARGB(255, 192, 216, 252),
                       child: ListTile(
                         leading: const Icon(Icons.sports_baseball),
                         title: Text('${Listofvalue[index]['name']}'),
@@ -758,15 +802,24 @@ class WebContent extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        left: 70,
+                      ),
+                      child: Divider(
+                        height: 1.0,
+                        color: Colors.grey,
+                      ),
+                    ),
                   ],
                 );
               } else {
                 return Column(
                   children: [
                     Container(
-                      color: index.isEven
-                          ? const Color.fromARGB(255, 223, 239, 252)
-                          : const Color.fromARGB(255, 192, 216, 252),
+                      // color: index.isEven
+                      //     ? const Color.fromARGB(255, 223, 239, 252)
+                      //     : const Color.fromARGB(255, 192, 216, 252),
                       child: ListTile(
                         leading: const Icon(Icons.abc_rounded),
                         title: Text('${Listofvalue[index]['name']}'),
@@ -778,6 +831,15 @@ class WebContent extends StatelessWidget {
                           value: false,
                           onChanged: (value) {},
                         ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        left: 70,
+                      ),
+                      child: Divider(
+                        height: 1.0,
+                        color: Colors.grey,
                       ),
                     ),
                   ],
