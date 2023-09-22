@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test1/product/state_management/add_product_provider.dart';
 import 'package:provider/provider.dart';
 
 class MyDropDown extends StatefulWidget {
   String initialValue;
   String purpose;
   List<String> itemList;
-
+  final Function(String value) setValue;
   MyDropDown({
     super.key,
     required this.initialValue,
     required this.itemList,
     required this.purpose,
+    required this.setValue,
   });
 
   @override
@@ -21,7 +21,6 @@ class MyDropDown extends StatefulWidget {
 class _MyDropDownState extends State<MyDropDown> {
   @override
   Widget build(BuildContext context) {
-    var addProductPvd = Provider.of<AddProductProvider>(context, listen: true);
 
     return Container(
       width: double.infinity,
@@ -47,25 +46,21 @@ class _MyDropDownState extends State<MyDropDown> {
         items: widget.itemList.map((String items) {
           return DropdownMenuItem(
             value: items,
-            child: Container(
-                padding: EdgeInsets.only(left: 10), child: Text(items)),
+            child: Container(padding: EdgeInsets.only(left: 10), child: Text(items)),
           );
         }).toList(),
         // After selecting the desired option,it will
         // change button value to selected value
         onChanged: (String? newValue) {
-          if (widget.purpose == 'addProduct/model') {
-            addProductPvd.editModel(newValue!);
-          } else if (widget.purpose == 'addProduct/category') {
-            addProductPvd.editcategory(newValue!);
-          } else if (widget.purpose == 'addProduct/Status') {
-            addProductPvd.editProductstatus(newValue!);
-          } else {}
-
-          setState(() {
-            widget.initialValue = newValue!;
-            // widget.Value = newValue;
-          });
+          // if (widget.purpose == 'addProduct/model') {
+          //   addProductPvd.editModel(newValue!);
+          // } else if (widget.purpose == 'addProduct/category') {
+          //   addProductPvd.editcategory(newValue!);
+          // } else if (widget.purpose == 'addProduct/Status') {
+          //   addProductPvd.editProductstatus(newValue!);
+          // } else {}
+          widget.setValue(newValue ?? '-/-');
+         
         },
       ),
     );

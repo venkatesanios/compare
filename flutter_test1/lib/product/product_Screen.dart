@@ -1,10 +1,10 @@
-import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
+ import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test1/product/widgets/drop_down_button.dart';
 import 'package:flutter_test1/product/widgets/inputHeading.dart';
-import 'package:flutter_test1/product/product_ViewModel.dart';
-import 'package:flutter_test1/product/state_management/add_product_provider.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_test1/product/product_viewmodel.dart';
+ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ProductForm extends StatefulWidget {
@@ -23,14 +23,19 @@ class _ProductFormState extends State<ProductForm> {
 
   final dateFormat = DateFormat("yyyy-MM-dd");
 
+  ///function call
+
+  setsalectvalue(String? value) {
+    print('setsalectvalue: $value');
+  }
+
   @override
   Widget build(BuildContext context) {
-    var addProductPvd = Provider.of<AddProductProvider>(context, listen: true);
-    var productViewModel = Provider.of<ProductViewModel>(context, listen: true);
+    var viewModel = Provider.of<ProductViewModel>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Product'),
+        title: Text('Add Product'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -42,115 +47,143 @@ class _ProductFormState extends State<ProductForm> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const InputHeading(heading: 'Model'),
+                    InputHeading(heading: 'Model'),
                     Container(
                       color: Colors.white,
                       width: double.infinity,
                       child: MyDropDown(
-                        initialValue: addProductPvd.initialModel,
-                        itemList: const [
+                        initialValue: viewModel.modelType,
+                        itemList: [
                           '--/--',
                           'Model 1',
                           'Model 2',
                           'Model 3',
                         ],
                         purpose: 'addProduct/model',
+                        setValue: viewModel.updateProductModelType,
                       ),
                     ),
-                    if (addProductPvd.initialModel == '--/--')
-                      const Text(
+                    if (viewModel.modelType == '--/--')
+                      Text(
                         'Please select a Model',
                         style: TextStyle(color: Colors.red),
                       ),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 10,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const InputHeading(heading: 'Category'),
+                    InputHeading(heading: 'Category'),
                     Container(
                       color: Colors.white,
                       width: double.infinity,
                       child: MyDropDown(
-                        initialValue: addProductPvd.initialcategory,
-                        itemList: const [
+                        initialValue: viewModel.category,
+                        itemList: [
                           '--/--',
                           'Category 1',
                           'Category 2',
                           'Category 3',
                         ],
                         purpose: 'addProduct/category',
+                        setValue: setsalectvalue,
                       ),
                     ),
-                    if (addProductPvd.initialcategory == '--/--')
-                      const Text(
+                    if (viewModel.category == '--/--')
+                      Text(
                         'Please select a category',
                         style: TextStyle(color: Colors.red),
                       ),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 10,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const InputHeading(heading: 'Product Status'),
+                    InputHeading(heading: 'Product Status'),
                     Container(
                       color: Colors.white,
                       width: double.infinity,
                       child: MyDropDown(
-                        initialValue: addProductPvd.initialProductstatus,
-                        itemList: const [
+                        initialValue: viewModel.productStatus,
+                        itemList: [
                           '--/--',
                           'Admin',
                           'Stand BY',
                         ],
                         purpose: 'addProduct/Status',
+                        setValue: setsalectvalue,
                       ),
                     ),
-                    if (addProductPvd.initialProductstatus == '--/--')
-                      const Text(
+                    if (viewModel.productStatus == '--/--')
+                      Text(
                         'Please select a product status',
                         style: TextStyle(color: Colors.red),
                       ),
                   ],
                 ),
-                TextFormField(
-                  initialValue: productViewModel.deviceId,
-                  decoration: const InputDecoration(labelText: 'Device ID'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Device ID is required';
-                    } else {
-                      productViewModel.updateProductDeviceId(value);
-                    }
-                    return null;
-                  },
+                Container(
+                  child: TextFormField(
+                    textInputAction: TextInputAction.next,
+                    //   onEditingComplete: ()=> FocusScope.of(context).requestFocus(widget.needTofocus),
+                    onChanged: (value) {
+                      setState(() {
+                        // _value = value;
+                        // createAccPvd.listenValueLength(widget.listeningHeading, value);
+                      });
+                    },
+                    onSaved: (newValue) {},
+                    validator: (value) {
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Device ID ',
+                      hintStyle: TextStyle(fontSize: 12),
+                      filled: true,
+                      fillColor: Colors.lightBlue,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
+                      counterText: '',
+                      contentPadding: EdgeInsets.all(10),
+                    ),
+                  ),
                 ),
+                // TextFormField(
+                //   initialValue: viewModel.deviceId,
+                //   decoration: InputDecoration(labelText: 'Device ID'),
+                //   validator: (value) {
+                //     if (value == null || value.isEmpty) {
+                //       return 'Device ID is required';
+                //     } else {
+                //       viewModel.updateProductDeviceId(value);
+                //     }
+                //     return null;
+                //   },
+                // ),
                 TextFormField(
-                  initialValue: productViewModel.description,
-                  decoration: const InputDecoration(labelText: 'Description'),
+                  initialValue: viewModel.description,
+                  decoration: InputDecoration(labelText: 'Description'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Description is required';
                     } else {
-                      productViewModel.updateProductDescription(value);
+                      viewModel.updateProductDescription(value);
                     }
                     return null;
                   },
                 ),
                 TextFormField(
-                  initialValue: productViewModel.warranty,
-                  decoration: const InputDecoration(labelText: 'Warranty'),
+                  initialValue: viewModel.warranty,
+                  decoration: InputDecoration(labelText: 'Warranty'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Warranty is required';
                     } else {
-                      productViewModel.updateProductWarranty(value);
+                      viewModel.updateProductWarranty(value);
                     }
                     return null;
                   },
@@ -159,10 +192,9 @@ class _ProductFormState extends State<ProductForm> {
                   format: dateFormat,
                   initialValue: DateTime.now(),
                   onChanged: (newValue) {
-                    productViewModel.updateProductCurrentDate(newValue!);
+                    viewModel.updateProductCurrentDate(newValue!);
                   },
-                  decoration:
-                      const InputDecoration(labelText: 'Manufacturing Date'),
+                  decoration: InputDecoration(labelText: 'Manufacturing Date'),
                   onShowPicker: (context, currentValue) async {
                     final date = await showDatePicker(
                       context: context,
@@ -183,29 +215,26 @@ class _ProductFormState extends State<ProductForm> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 20.0),
+                SizedBox(height: 20.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          productViewModel.updateProductCategory(
-                              addProductPvd.initialcategory);
-                          productViewModel.updateProductModelType(
-                              addProductPvd.initialModel);
-                          productViewModel.updateProductStatus(
-                              addProductPvd.initialProductstatus);
-                          productViewModel.saveProduct();
+                          viewModel.updateProductCategory(viewModel.category);
+                          viewModel.updateProductModelType(viewModel.modelType);
+                          viewModel.updateProductStatus(viewModel.productStatus);
+                          viewModel.saveProduct();
                         }
                       },
-                      child: const Text('ADD'),
+                      child: Text('ADD'),
                     ),
                     ElevatedButton(
                       onPressed: () {
                         // Handle Cancel button
                       },
-                      child: const Text('Cancel'),
+                      child: Text('Cancel'),
                     ),
                   ],
                 ),

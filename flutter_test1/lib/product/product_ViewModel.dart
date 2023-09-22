@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test1/product/product_model.dart';
 
 class ProductViewModel extends ChangeNotifier {
   // Define the properties for the product
-  String _category = '';
-  String _modelType = '';
-  String _productStatus = '';
-  String _deviceId = '';
-  String _description = '';
-  String _warranty = '';
-  DateTime _currentDate = DateTime.now();
-
+  String? _category;
+  String? _modelType;
+  String? _productStatus;
+  String? _deviceId;
+  String? _description;
+  String? _warranty;
+  DateTime? _currentDate;
+  final product = ProductModel(category: 'Model 1', modelType: 'modelType', productStatus: 'admin', deviceId: 'deviceId', description: 'description', warranty: 'warranty', currentDate: DateTime.now());
   // Getters for the properties
-  String get category => _category;
-  String get modelType => _modelType;
-  String get productStatus => _productStatus;
-  String get deviceId => _deviceId;
-  String get description => _description;
-  String get warranty => _warranty;
-  DateTime get currentDate => _currentDate;
+  String get category => _category ?? product.category;
+  String get modelType => _modelType ?? product.modelType;
+  String get productStatus => _productStatus ?? product.productStatus;
+  String get deviceId => _deviceId ?? product.deviceId;
+  String get description => _description ?? product.description;
+  String get warranty => _warranty ?? product.warranty;
+  DateTime get currentDate => _currentDate ?? product.currentDate;
 
   // Update methods for the properties
   void updateProductCategory(String category) {
@@ -57,13 +58,13 @@ class ProductViewModel extends ChangeNotifier {
 
   // Save the product data (you can implement your logic here)
   void saveProduct() {
-    // print('Add Product Data');
-    // print('Category: $_category');
-    // print('Model Type: $_modelType');
-    // print('Product Status: $_productStatus');
-    // print('Device ID: $_deviceId');
-    // print('Description: $_description');
-    // print('Warranty: $_warranty');
-    // print('Current Date: $_currentDate');
+    print('Add Product Data');
+    print('Category: $_category');
+    print('Model Type: $_modelType');
+    print('Product Status: $_productStatus');
+    print('Device ID: $_deviceId');
+    print('Description: $_description');
+    print('Warranty: $_warranty');
+    print('Current Date: $_currentDate');
   }
 }
