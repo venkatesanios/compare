@@ -31,7 +31,7 @@ void main() {
         // ChangeNotifierProvider(create: (context) => SellDeviceProvider()),
         // ChangeNotifierProvider(create: (context) => DeviceListViewModel()),
       ],
-      child: MyApp3(),
+      child: DealerScreen(),
     ),
   ));
 }
