@@ -7,7 +7,17 @@ class DealerViewModel extends ChangeNotifier {
   String? _value;
   String? _valuetype;
 
-  final dealerdefinition = DealerModel(title: '_title', description: '_description', value: '_value', valuetype: '_valuetype');
+  final dealerdefinition = DealerModel(
+      title: '_title',
+      description: '_description',
+      value: '_value',
+      valuetype: '_valuetype');
+  // final dealerdefinition = Dealerdefinition(
+  //   general: List.empty(),
+  //   fertilizer: List.empty(),
+  //   valve: List.empty(),
+  //   memory: List.empty(),
+  // );
 
   String get title => _title ?? dealerdefinition.title;
   String get description => _description ?? dealerdefinition.description;

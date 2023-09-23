@@ -1,10 +1,10 @@
- import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
+import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test1/product/widgets/drop_down_button.dart';
 import 'package:flutter_test1/product/widgets/inputHeading.dart';
 import 'package:flutter_test1/product/product_viewmodel.dart';
- import 'package:intl/intl.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ProductForm extends StatefulWidget {
@@ -53,7 +53,7 @@ class _ProductFormState extends State<ProductForm> {
                       width: double.infinity,
                       child: MyDropDown(
                         initialValue: viewModel.modelType,
-                        itemList: [
+                        itemList: const [
                           '--/--',
                           'Model 1',
                           'Model 2',
@@ -64,13 +64,13 @@ class _ProductFormState extends State<ProductForm> {
                       ),
                     ),
                     if (viewModel.modelType == '--/--')
-                      Text(
+                      const Text(
                         'Please select a Model',
                         style: TextStyle(color: Colors.red),
                       ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Column(
@@ -82,7 +82,7 @@ class _ProductFormState extends State<ProductForm> {
                       width: double.infinity,
                       child: MyDropDown(
                         initialValue: viewModel.category,
-                        itemList: [
+                        itemList: const [
                           '--/--',
                           'Category 1',
                           'Category 2',
@@ -93,13 +93,13 @@ class _ProductFormState extends State<ProductForm> {
                       ),
                     ),
                     if (viewModel.category == '--/--')
-                      Text(
+                      const Text(
                         'Please select a category',
                         style: TextStyle(color: Colors.red),
                       ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Column(
@@ -111,7 +111,7 @@ class _ProductFormState extends State<ProductForm> {
                       width: double.infinity,
                       child: MyDropDown(
                         initialValue: viewModel.productStatus,
-                        itemList: [
+                        itemList: const [
                           '--/--',
                           'Admin',
                           'Stand BY',
@@ -121,7 +121,7 @@ class _ProductFormState extends State<ProductForm> {
                       ),
                     ),
                     if (viewModel.productStatus == '--/--')
-                      Text(
+                      const Text(
                         'Please select a product status',
                         style: TextStyle(color: Colors.red),
                       ),
@@ -146,7 +146,9 @@ class _ProductFormState extends State<ProductForm> {
                       hintStyle: TextStyle(fontSize: 12),
                       filled: true,
                       fillColor: Colors.lightBlue,
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none),
                       counterText: '',
                       contentPadding: EdgeInsets.all(10),
                     ),
@@ -224,7 +226,8 @@ class _ProductFormState extends State<ProductForm> {
                         if (_formKey.currentState!.validate()) {
                           viewModel.updateProductCategory(viewModel.category);
                           viewModel.updateProductModelType(viewModel.modelType);
-                          viewModel.updateProductStatus(viewModel.productStatus);
+                          viewModel
+                              .updateProductStatus(viewModel.productStatus);
                           viewModel.saveProduct();
                         }
                       },

@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MyDropDown extends StatefulWidget {
-  String initialValue;
-  String purpose;
+  String? initialValue;
+  String? purpose;
   List<String> itemList;
-  final Function(String value) setValue;
+  final Function(String value)? setValue;
+
   MyDropDown({
     super.key,
-    required this.initialValue,
+    this.initialValue,
     required this.itemList,
-    required this.purpose,
-    required this.setValue,
+    this.purpose,
+    this.setValue,
   });
 
   @override
@@ -21,9 +22,8 @@ class MyDropDown extends StatefulWidget {
 class _MyDropDownState extends State<MyDropDown> {
   @override
   Widget build(BuildContext context) {
-
     return Container(
-      width: double.infinity,
+      // width: double.infinity,
       decoration: const BoxDecoration(
           color: Color.fromARGB(255, 247, 245, 245),
           //borderRadius: BorderRadius.circular(10),
@@ -35,7 +35,7 @@ class _MyDropDownState extends State<MyDropDown> {
       child: DropdownButton(
         underline: Container(),
         // Initial Value
-        value: widget.initialValue,
+        value: widget.initialValue ?? widget.itemList[0],
         isExpanded: true,
         // Down Arrow Icon
         icon: Padding(
@@ -46,7 +46,8 @@ class _MyDropDownState extends State<MyDropDown> {
         items: widget.itemList.map((String items) {
           return DropdownMenuItem(
             value: items,
-            child: Container(padding: EdgeInsets.only(left: 10), child: Text(items)),
+            child: Container(
+                padding: EdgeInsets.only(left: 10), child: Text(items)),
           );
         }).toList(),
         // After selecting the desired option,it will
@@ -59,8 +60,8 @@ class _MyDropDownState extends State<MyDropDown> {
           // } else if (widget.purpose == 'addProduct/Status') {
           //   addProductPvd.editProductstatus(newValue!);
           // } else {}
-          widget.setValue(newValue ?? '-/-');
-         
+          // widget.setValue!(newValue ?? '-/-');
+          widget.initialValue = newValue!;
         },
       ),
     );

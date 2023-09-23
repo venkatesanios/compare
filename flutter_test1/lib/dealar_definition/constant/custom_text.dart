@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? labelText;
+  final String? initialValue;
+
   final IconData? prefixIcon;
   final bool obscureText;
   final ValueChanged<String>? onChanged;
   final String? Function(String?)? validator;
 
   CustomTextField({
-    required this.controller,
+    this.controller,
     this.labelText,
+    this.initialValue,
     this.prefixIcon,
     this.obscureText = false,
     this.onChanged,
@@ -23,6 +26,8 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       onChanged: onChanged,
+      initialValue: initialValue,
+      textAlign: TextAlign.center,
       decoration: InputDecoration(
         labelText: labelText,
         prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
