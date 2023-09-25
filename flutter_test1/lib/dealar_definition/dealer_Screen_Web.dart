@@ -433,24 +433,22 @@ class WebContent extends StatelessWidget {
   }
 }
 
-
-
 //  {
 //   "message" : "Succès ",
 //   "code" : 200,
 //   "General" : [
-// {"title" : "USA. unite","description" : "Details of use Use units","value" : "1234","valuetype" : "dropdown"},{"title" : "USA. unite","description" : "Details of use Use units","value" : "1234","valuetype" : "dropdown"}
+// {"title" : "USA. unite","description" : "Details of use Use units","value" : "1234","valuetype" : "dropdown","dropdownlist" : []},{"title" : "USA. unite","description" : "Details of use Use units","value" : "1234","valuetype" : "dropdown","dropdownlist" : []}
 //   ],
 //     "Fertilizer" : [
-// {"title" : "USA. unite","description" : "Details of use Use units","value" : "1234","valuetype" : "dropdown"}
+// {"title" : "USA. unite","description" : "Details of use Use units","value" : "1234","valuetype" : "dropdown","dropdownlist" : []}
 
 //   ],
 //     "Valve" : [
-// {"title" : "USA. unite","description" : "Details of use Use units","value" : "1234","valuetype" : "dropdown"}
+// {"title" : "USA. unite","description" : "Details of use Use units","value" : "1234","valuetype" : "dropdown","dropdownlist" : []}
 
 //   ],
 //     "Memory" : [
-// {"title" : "USA. unite","description" : "Details of use Use units","value" : "1234","valuetype" : "dropdown"}
+// {"title" : "USA. unite","description" : "Details of use Use units","value" : "1234","valuetype" : "dropdown","dropdownlist" : []}
 
 //   ]
 // }

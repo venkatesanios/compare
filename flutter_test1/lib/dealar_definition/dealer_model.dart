@@ -1,33 +1,36 @@
 // To parse this JSON data, do
 //
 //     final dealerdefinition = dealerdefinitionFromJson(jsonString);
+// To parse this JSON data, do
+//
+//     final welcome = welcomeFromJson(jsonString);
 
 import 'dart:convert';
 
-Dealerdefinition dealerdefinitionFromJson(String str) =>
-    Dealerdefinition.fromJson(json.decode(str));
+Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
 
-String dealerdefinitionToJson(Dealerdefinition data) =>
-    json.encode(data.toJson());
+String welcomeToJson(Welcome data) => json.encode(data.toJson());
 
-class Dealerdefinition {
+class Welcome {
   String? message;
+  int? code;
   List<Valuesdetails>? general;
   List<Valuesdetails>? fertilizer;
   List<Valuesdetails>? valve;
   List<Valuesdetails>? memory;
 
-  Dealerdefinition({
+  Welcome({
     this.message,
+    this.code,
     this.general,
     this.fertilizer,
     this.valve,
     this.memory,
   });
 
-  factory Dealerdefinition.fromJson(Map<String, dynamic> json) =>
-      Dealerdefinition(
+  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
         message: json["message"],
+        code: json["code"],
         general: json["General"] == null
             ? []
             : List<Valuesdetails>.from(
@@ -48,6 +51,7 @@ class Dealerdefinition {
 
   Map<String, dynamic> toJson() => {
         "message": message,
+        "code": code,
         "General": general == null
             ? []
             : List<dynamic>.from(general!.map((x) => x.toJson())),
@@ -68,12 +72,14 @@ class Valuesdetails {
   String? description;
   String? value;
   String? valuetype;
+  List<dynamic>? dropdownlist;
 
   Valuesdetails({
     this.title,
     this.description,
     this.value,
     this.valuetype,
+    this.dropdownlist,
   });
 
   factory Valuesdetails.fromJson(Map<String, dynamic> json) => Valuesdetails(
@@ -81,6 +87,9 @@ class Valuesdetails {
         description: json["description"],
         value: json["value"],
         valuetype: json["valuetype"],
+        dropdownlist: json["dropdownlist"] == null
+            ? []
+            : List<dynamic>.from(json["dropdownlist"]!.map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -88,6 +97,9 @@ class Valuesdetails {
         "description": description,
         "value": value,
         "valuetype": valuetype,
+        "dropdownlist": dropdownlist == null
+            ? []
+            : List<dynamic>.from(dropdownlist!.map((x) => x)),
       };
 }
 

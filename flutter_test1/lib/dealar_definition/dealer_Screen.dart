@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test1/dealar_definition/constant/custom_text.dart';
 import 'package:flutter_test1/dealar_definition/dealer_Screen_Web.dart';
-import 'package:flutter_test1/dealar_definition/dealer_model.dart';
 import 'package:flutter_test1/dealar_definition/dealer_viewmodel.dart';
 import 'package:flutter_test1/keyboard_dismiss.dart';
 import 'package:flutter_test1/product/widgets/custom_switch.dart';
@@ -239,7 +237,7 @@ class MobileContent extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Dealer Definition'),
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Tab(
                 text: 'General',
@@ -335,11 +333,8 @@ class MobileContent extends StatelessWidget {
                   return Column(
                     children: [
                       Container(
-                        // color: index.isEven
-                        //     ? const Color.fromARGB(255, 223, 239, 252)
-                        //     : const Color.fromARGB(255, 192, 216, 252),
                         child: ListTile(
-                          leading: const Icon(Icons.account_balance),
+                          //   leading: const Icon(Icons.account_balance),
                           title: Text('${Listofvalue[index]['name']}'),
                           subtitle: Text(
                             'Details: ${Listofvalue[index]['name']}',
@@ -349,7 +344,7 @@ class MobileContent extends StatelessWidget {
                             color: Colors.white,
                             width: 80,
                             child: MyDropDown(
-                              itemList: [
+                              itemList: const [
                                 '--/--',
                                 'hh:mm:ss',
                                 'm3',
@@ -358,33 +353,6 @@ class MobileContent extends StatelessWidget {
                               setValue: dealerviewmodel.updatevalue,
                             ),
                           ),
-
-                          // MyDropDown(
-                          //   initialValue: 'hh:mm:ss',
-                          //   itemList: [
-                          //     'hh:mm:ss',
-                          //     'm3',
-                          //     'Lts/h',
-                          //     'Model 3',
-                          //   ],
-                          //   //  setValue: viewModel.updateProductModelType,
-                          // ),
-
-                          // trailing: DropdownButton<String>(
-                          //   items:
-                          //       ['hh:mm:ss', 'm3', 'Lts/h'].map((String value) {
-                          //     return DropdownMenuItem<String>(
-                          //       value: value,
-                          //       child: Text(value),
-                          //     );
-                          //   }).toList(),
-                          //   onChanged: (String? newValue) {
-                          //     // setState(() {
-                          //     //   selectedDropdownValue = newValue!;
-                          //     // });
-                          //   },
-                          //   value: selectedDropdownValue,
-                          // ),
                         ),
                       ),
                       const Padding(
@@ -402,11 +370,7 @@ class MobileContent extends StatelessWidget {
                   return Column(
                     children: [
                       Container(
-                        // color: index.isEven
-                        //     ? const Color.fromARGB(255, 223, 239, 252)
-                        //     : const Color.fromARGB(255, 192, 216, 252),
                         child: ListTile(
-                          leading: const Icon(Icons.sports_baseball),
                           title: Text('${Listofvalue[index]['name']}'),
                           subtitle: Text(
                             'Details: ${Listofvalue[index]['name']}',
@@ -425,30 +389,7 @@ class MobileContent extends StatelessWidget {
                                   }
                                   return null;
                                 },
-                              )
-
-                              // TextField(
-                              //   inputFormatters: [
-                              //     FilteringTextInputFormatter.allow(
-                              //       // RegExp("[0-9]"), /^\d*\.?\d*$/
-                              //       RegExp('[0-9,.]'),
-                              //       // RegExp(r'^\d{3}\.\d$'),
-                              //     ),
-                              //   ],
-                              //   keyboardType:
-                              //       TextInputType.numberWithOptions(decimal: true),
-                              //   decoration: const InputDecoration(
-                              //     enabledBorder: UnderlineInputBorder(
-                              //       borderSide: BorderSide(color: Colors.grey),
-                              //     ),
-                              //     focusedBorder: UnderlineInputBorder(
-                              //       borderSide: BorderSide(color: Colors.blue),
-                              //     ),
-                              //   ),
-                              //   onChanged: (text) {},
-                              //   textAlign: TextAlign.center,
-                              // ),
-                              ),
+                              )),
                         ),
                       ),
                       const Padding(
@@ -466,11 +407,7 @@ class MobileContent extends StatelessWidget {
                   return Column(
                     children: [
                       Container(
-                        // color: index.isEven
-                        //     ? const Color.fromARGB(255, 223, 239, 252)
-                        //     : const Color.fromARGB(255, 192, 216, 252),
                         child: ListTile(
-                          leading: const Icon(Icons.abc_rounded),
                           title: Text('${Listofvalue[index]['name']}'),
                           subtitle: Text(
                             'Details: ${Listofvalue[index]['name']}',
