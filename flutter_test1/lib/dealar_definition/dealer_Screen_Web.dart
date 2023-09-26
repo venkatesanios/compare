@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test1/dealar_definition/constant/custom_text.dart';
 import 'package:flutter_test1/product/widgets/custom_switch.dart';
@@ -207,48 +209,64 @@ class WebContent extends StatelessWidget {
     int crossAxisCount = (screenWidth / 300).floor();
 
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 223, 239, 252),
       appBar: AppBar(
         title: Text('Dealer defination'),
       ),
-      body: Form(
-        key: _formKey,
-        child: GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              mainAxisSpacing: 10, // Spacing between rows
-              crossAxisSpacing: 10,
-              childAspectRatio: 0.5),
-          children: <Widget>[
-            Container(
-              color: Color.fromARGB(255, 223, 239, 252),
-              margin: const EdgeInsets.all(5),
-              child: Center(
-                child: buildTab('General', true),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          key: _formKey,
+          child: GridView(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                mainAxisSpacing: 10, // Spacing between rows
+                crossAxisSpacing: 10,
+                childAspectRatio: 0.5),
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin: const EdgeInsets.all(5),
+                child: Center(
+                  child: buildTab('General', true),
+                ),
               ),
-            ),
-            Container(
-              color: Color.fromARGB(255, 223, 239, 252),
-              margin: const EdgeInsets.all(5),
-              child: Center(
-                child: buildTab('Fertilizer', true),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin: const EdgeInsets.all(5),
+                child: Center(
+                  child: buildTab('Fertilizer', true),
+                ),
               ),
-            ),
-            Container(
-              color: Color.fromARGB(255, 223, 239, 252),
-              margin: const EdgeInsets.all(5),
-              child: Center(
-                child: buildTab('Filter', true),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin: const EdgeInsets.all(5),
+                child: Center(
+                  child: buildTab('Filter', true),
+                ),
               ),
-            ),
-            Container(
-              color: Color.fromARGB(255, 223, 239, 252),
-              margin: const EdgeInsets.all(5),
-              child: Center(
-                child: buildTab('Memory', true),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin: const EdgeInsets.all(5),
+                child: Center(
+                  child: buildTab('Memory', true),
+                ),
               ),
-            ),
-            // Add more GridItem widgets as needed
-          ],
+              // Add more GridItem widgets as needed
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -275,160 +293,151 @@ class WebContent extends StatelessWidget {
       count = memorylist.length;
       Listofvalue = memorylist;
     }
-    return Column(
-      children: [
-        titlestatus
-            ? Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Text(
-                  tabTitle,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+          titlestatus
+              ? Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text(
+                    tabTitle,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              )
-            : Container(),
-        const Divider(color: Colors.grey),
-        Flexible(
-          child: ListView.builder(
-            itemCount: Listofvalue.length,
-            itemBuilder: (context, index) {
-              oddeven = index.isEven ? 0 : 1;
-              if (Listofvalue[index]['type'] == '1') {
-                String selectedDropdownValue = 'hh:mm:ss';
-                return Column(
-                  children: [
-                    Container(
-                      // color: index.isEven
-                      //     ? const Color.fromARGB(255, 223, 239, 252)
-                      //     : const Color.fromARGB(255, 192, 216, 252),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                )
+              : Container(),
+          const Divider(color: Colors.grey),
+          Flexible(
+            child: ListView.builder(
+              itemCount: Listofvalue.length,
+              itemBuilder: (context, index) {
+                oddeven = index.isEven ? 0 : 1;
+                if (Listofvalue[index]['type'] == '1') {
+                  String selectedDropdownValue = 'hh:mm:ss';
+                  return Column(
+                    children: [
+                      Container(
+                        // color: index.isEven
+                        //     ? const Color.fromARGB(255, 223, 239, 252)
+                        //     : const Color.fromARGB(255, 192, 216, 252),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListTile(
+                            // leading: const Icon(Icons.account_balance),
+                            title: Text('${Listofvalue[index]['name']}'),
+                            subtitle: Text(
+                              'Details: ${Listofvalue[index]['name']}',
+                              style: const TextStyle(fontSize: 11),
+                            ),
+                            trailing: DropdownButton<String>(
+                              items: ['hh:mm:ss', 'm3', 'Lts/h']
+                                  .map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                // setState(() {
+                                //   selectedDropdownValue = newValue!;
+                                // });
+                              },
+                              value: selectedDropdownValue,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          left: 70,
+                        ),
+                        child: Divider(
+                          height: 1.0,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  );
+                } else if (Listofvalue[index]['type'] == '2') {
+                  return Column(
+                    children: [
+                      Container(
+                        // color: index.isEven
+                        //     ? const Color.fromARGB(255, 223, 239, 252)
+                        //     : const Color.fromARGB(255, 192, 216, 252),
                         child: ListTile(
-                          leading: const Icon(Icons.account_balance),
+                          // leading: const Icon(Icons.sports_baseball),
                           title: Text('${Listofvalue[index]['name']}'),
                           subtitle: Text(
                             'Details: ${Listofvalue[index]['name']}',
                             style: const TextStyle(fontSize: 11),
                           ),
-                          trailing: DropdownButton<String>(
-                            items:
-                                ['hh:mm:ss', 'm3', 'Lts/h'].map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              // setState(() {
-                              //   selectedDropdownValue = newValue!;
-                              // });
-                            },
-                            value: selectedDropdownValue,
+                          trailing: SizedBox(
+                              width: 50,
+                              child: CustomTextField(
+                                controller: TextEditingController(),
+                                onChanged: (text) {},
+                                labelText: '${Listofvalue[index]['value']}',
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Warranty is required';
+                                  } else {
+                                    // dealerviewmodel.updatevalue;
+                                  }
+                                  return null;
+                                },
+                              )),
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          left: 70,
+                        ),
+                        child: Divider(
+                          height: 1.0,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      Container(
+                        child: ListTile(
+                          // leading: const Icon(Icons.abc_rounded),
+                          title: Text('${Listofvalue[index]['name']}'),
+                          subtitle: Text(
+                            'Details: ${Listofvalue[index]['name']}',
+                            style: const TextStyle(fontSize: 11),
+                          ),
+                          trailing: MySwitch(
+                            value: false,
+                            onChanged: ((value) {
+                              print(value);
+                            }),
                           ),
                         ),
                       ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(
-                        left: 70,
-                      ),
-                      child: Divider(
-                        height: 1.0,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                );
-              } else if (Listofvalue[index]['type'] == '2') {
-                return Column(
-                  children: [
-                    Container(
-                      // color: index.isEven
-                      //     ? const Color.fromARGB(255, 223, 239, 252)
-                      //     : const Color.fromARGB(255, 192, 216, 252),
-                      child: ListTile(
-                        leading: const Icon(Icons.sports_baseball),
-                        title: Text('${Listofvalue[index]['name']}'),
-                        subtitle: Text(
-                          'Details: ${Listofvalue[index]['name']}',
-                          style: const TextStyle(fontSize: 11),
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          left: 70,
                         ),
-                        trailing: SizedBox(
-                            width: 50,
-                            child: CustomTextField(
-                              controller: TextEditingController(),
-                              onChanged: (text) {},
-                              labelText: '${Listofvalue[index]['name']}',
-                            )
-                            // TextField(
-                            //   inputFormatters: [
-                            //     FilteringTextInputFormatter.allow(
-                            //       RegExp("[0-9]"),
-                            //     ),
-                            //   ],
-                            //   keyboardType:
-                            //       TextInputType.numberWithOptions(decimal: true),
-                            //   decoration: const InputDecoration(
-                            //     enabledBorder: UnderlineInputBorder(
-                            //       borderSide: BorderSide(color: Colors.grey),
-                            //     ),
-                            //     focusedBorder: UnderlineInputBorder(
-                            //       borderSide: BorderSide(color: Colors.blue),
-                            //     ),
-                            //   ),
-                            //   onChanged: (text) {},
-                            //   textAlign: TextAlign.center,
-                            // ),
-                            ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(
-                        left: 70,
-                      ),
-                      child: Divider(
-                        height: 1.0,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                );
-              } else {
-                return Column(
-                  children: [
-                    Container(
-                      child: ListTile(
-                        leading: const Icon(Icons.abc_rounded),
-                        title: Text('${Listofvalue[index]['name']}'),
-                        subtitle: Text(
-                          'Details: ${Listofvalue[index]['name']}',
-                          style: const TextStyle(fontSize: 11),
-                        ),
-                        trailing: MySwitch(
-                          value: false,
-                          onChanged: ((value) {
-                            print(value);
-                          }),
+                        child: Divider(
+                          height: 1.0,
+                          color: Colors.grey,
                         ),
                       ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(
-                        left: 70,
-                      ),
-                      child: Divider(
-                        height: 1.0,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                );
-              }
-            },
+                    ],
+                  );
+                }
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

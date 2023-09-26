@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
 class HttpService {
-  final String baseURL = "http://192.168.1.135:3000/api/v1/"; //development
+  final String baseURL = "http://192.168.1.141:3000/api/v1/"; //development
 
   Future<String> postRequest(String action, Map<String, Object> body) async {
     var response = await http.post(Uri.parse(baseURL),

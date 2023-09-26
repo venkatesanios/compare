@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test1/alert.dart';
 import 'package:flutter_test1/bottomsheet.dart';
+import 'package:flutter_test1/create_dealerdifinition/createdealerdifinition.dart';
 import 'package:flutter_test1/dealar_definition/constant/customtext.dart';
 import 'package:flutter_test1/dealar_definition/dealer_Screen.dart';
 import 'package:flutter_test1/dealar_definition/newdealerscreen.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => ContactBloc(),
-        child: ProductForm(),
+        child: DealerDefinitionScreen(),
       ),
     );
   }

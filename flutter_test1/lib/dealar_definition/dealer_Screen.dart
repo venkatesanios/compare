@@ -420,10 +420,6 @@ class MobileContent extends StatelessWidget {
                               dealerviewmodel.updatevalue;
                             }),
                           ),
-                          // trailing: Switch(
-                          //   value: false,
-                          //   onChanged: (value) {},
-                          // ),
                         ),
                       ),
                       const Padding(

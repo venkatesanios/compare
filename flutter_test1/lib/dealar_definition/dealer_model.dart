@@ -3,15 +3,17 @@
 //     final dealerdefinition = dealerdefinitionFromJson(jsonString);
 // To parse this JSON data, do
 //
-//     final welcome = welcomeFromJson(jsonString);
+//     final DealerDefinition = welcomeFromJson(jsonString);
 
 import 'dart:convert';
 
-Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
+DealerDefinition dealerdifinitionFromJson(String str) =>
+    DealerDefinition.fromJson(json.decode(str));
 
-String welcomeToJson(Welcome data) => json.encode(data.toJson());
+String dealerdifinitionToJson(DealerDefinition data) =>
+    json.encode(data.toJson());
 
-class Welcome {
+class DealerDefinition {
   String? message;
   int? code;
   List<Valuesdetails>? general;
@@ -19,7 +21,7 @@ class Welcome {
   List<Valuesdetails>? valve;
   List<Valuesdetails>? memory;
 
-  Welcome({
+  DealerDefinition({
     this.message,
     this.code,
     this.general,
@@ -28,7 +30,8 @@ class Welcome {
     this.memory,
   });
 
-  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+  factory DealerDefinition.fromJson(Map<String, dynamic> json) =>
+      DealerDefinition(
         message: json["message"],
         code: json["code"],
         general: json["General"] == null
