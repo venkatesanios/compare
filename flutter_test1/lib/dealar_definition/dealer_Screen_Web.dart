@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test1/dealar_definition/constant/custom_text.dart';
 import 'package:flutter_test1/product/widgets/custom_switch.dart';
@@ -264,7 +262,6 @@ class WebContent extends StatelessWidget {
                   child: buildTab('Memory', true),
                 ),
               ),
-              // Add more GridItem widgets as needed
             ],
           ),
         ),
@@ -314,7 +311,7 @@ class WebContent extends StatelessWidget {
               itemCount: Listofvalue.length,
               itemBuilder: (context, index) {
                 oddeven = index.isEven ? 0 : 1;
-                if (Listofvalue[index]['type'] == '1') {
+                if (Listofvalue[index]['type'] == 'Dropdown') {
                   String selectedDropdownValue = 'hh:mm:ss';
                   return Column(
                     children: [
@@ -360,7 +357,7 @@ class WebContent extends StatelessWidget {
                       ),
                     ],
                   );
-                } else if (Listofvalue[index]['type'] == '2') {
+                } else if (Listofvalue[index]['type'] == 'Text') {
                   return Column(
                     children: [
                       Container(
@@ -402,7 +399,7 @@ class WebContent extends StatelessWidget {
                       ),
                     ],
                   );
-                } else {
+                } else if (Listofvalue[index]['type'] == 'Switch') {
                   return Column(
                     children: [
                       Container(
