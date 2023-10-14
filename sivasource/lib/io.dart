@@ -989,32 +989,19 @@ class _dosingState extends State<inputoutput> {
         child: Container(
           child: FloatingActionButton(
             onPressed: () {
-              // String payloadout = convertmappingoutput(mapppingofoutputs);
-              // String payloadinput = convertmapinputs(mappingOfInputs);
               String payloadsp = convertSourcepump(sourcePump);
-              // print("---------payloadir-----------$payloadsp");
               String payloadir = convertIrrigationpump(transformedList);
-              // print("---------payloadir-----------$payloadir");
               String payloadirline = convertIrrigation(irrigationline);
-              // print("---------payloadirline-----------$payloadirline");
               String payloadcendosing = convertCentralDosing(centralDosing);
               String payloadlocdosing = convertlocalDosing(localDosing);
-              // print("---------payloadlocdosing-----------$payloadlocdosing");
               String payloadcfilter = convertcentralfilter(centralFilter);
               String payloadlocfilter = convertlocalfilter(localFilter);
-              // print("---------payloadlocfilter-----------$payloadlocfilter");
               String payloadmapip = convertmapinputs(mappingOfInputs);
-              // print("---------payloadmapip-----------$payloadmapip");
               String payloadmapout = convertmappingoutput(mapppingofoutputs);
-              // print("---------payloadmapout-----------$payloadmapout");
               String payloadspmo = convertSP_MO(SP_MO);
-              // print("---------payloadspmo-----------$payloadspmo");
               String payloadipmo = convertIP_MO(IP_MO);
-              // print("---------payloadipmo-----------$payloadipmo");
               String payloadcdmo = convertCD_MO(CD_for_MO);
-              // print("---------payloadcdmo-----------$payloadcdmo");
               String payloadcfmo = convertCF_MO(CF_for_MO);
-              // print("---------payloadcfmo-----------$payloadcfmo");
 
               Map<String, List<dynamic>> payload = {
                 '200': [
