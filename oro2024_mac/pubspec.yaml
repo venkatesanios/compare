@@ -64,6 +64,8 @@ dependencies:
   flutter_time_picker_spinner: ^2.0.0
   material_design_icons_flutter: ^7.0.7296
   http: ^1.1.0
+  data_table_2: ^2.5.8
+
 
 dev_dependencies:
   flutter_test:

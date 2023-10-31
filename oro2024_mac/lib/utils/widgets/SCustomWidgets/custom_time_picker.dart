@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:intl/intl.dart';
 
 class CustomTimePicker extends StatefulWidget {
@@ -58,42 +59,42 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
           content: Container(
             alignment: Alignment.center,
             height: 200,
-            // child: TimePickerSpinner(
-            //   alignment: Alignment.center,
-            //   isForce2Digits: true,
-            //   is24HourMode: widget.is24HourMode ?? true,
-            //   isShowSeconds: widget.isSeconds,
-            //   isShowHours: true,
-            //   normalTextStyle: const TextStyle(fontSize: 20, color: Colors.grey),
-            //   highlightedTextStyle: const TextStyle(fontSize: 20, color: Colors.black),
-            //   spacing: 50,
-            //   itemHeight: 70,
-            //   onTimeChange: (time) {
-            //     final formattedTime = widget.isSeconds
-            //         ? DateFormat('HH:mm:ss').format(
-            //       DateTime(
-            //         DateTime.now().year,
-            //         DateTime.now().month,
-            //         DateTime.now().day,
-            //         time.hour,
-            //         time.minute,
-            //         time.second,
-            //       ),
-            //     )
-            //         : DateFormat('Hm').format(
-            //       DateTime(
-            //         DateTime.now().year,
-            //         DateTime.now().month,
-            //         DateTime.now().day,
-            //         time.hour,
-            //         time.minute,
-            //         time.second,
-            //       ),
-            //     );
-            //     selectedValue = formattedTime;
-            //   },
-            //   time: widget.isSeconds ? DateFormat('HH:mm:ss').parse(selectedValue) : DateFormat('Hm').parse(selectedValue),
-            // ),
+            child: TimePickerSpinner(
+              alignment: Alignment.center,
+              isForce2Digits: true,
+              is24HourMode: widget.is24HourMode ?? true,
+              isShowSeconds: widget.isSeconds,
+              isShowHours: true,
+              normalTextStyle: const TextStyle(fontSize: 20, color: Colors.grey),
+              highlightedTextStyle: const TextStyle(fontSize: 20, color: Colors.black),
+              spacing: 50,
+              itemHeight: 70,
+              onTimeChange: (time) {
+                final formattedTime = widget.isSeconds
+                    ? DateFormat('HH:mm:ss').format(
+                  DateTime(
+                    DateTime.now().year,
+                    DateTime.now().month,
+                    DateTime.now().day,
+                    time.hour,
+                    time.minute,
+                    time.second,
+                  ),
+                )
+                    : DateFormat('Hm').format(
+                  DateTime(
+                    DateTime.now().year,
+                    DateTime.now().month,
+                    DateTime.now().day,
+                    time.hour,
+                    time.minute,
+                    time.second,
+                  ),
+                );
+                selectedValue = formattedTime;
+              },
+              time: widget.isSeconds ? DateFormat('HH:mm:ss').parse(selectedValue) : DateFormat('Hm').parse(selectedValue),
+            ),
           ),
           actionsAlignment: MainAxisAlignment.end,
           actions: [
