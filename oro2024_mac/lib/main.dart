@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:oro2024_mac/screens/IrrigationProgram/alert.dart';
+import 'package:oro2024_mac/screens/config_maker/config_maker.dart';
 import 'package:oro2024_mac/services/mqtt.dart';
 import 'package:oro2024_mac/provider/ConfigMakerProvider/product_limit_provider.dart';
 import 'package:oro2024_mac/provider/irrigation_program_main_provider.dart';
@@ -32,6 +34,7 @@ void main() {
       ChangeNotifierProvider(create: (context) => PreferencesMainProvider()),
       ChangeNotifierProvider(create: (context) => DataAcquisitionProvider()),
       ChangeNotifierProvider(create: (context) => ProductLimitProvider()),
+      ChangeNotifierProvider(create: (context) => SelectedListProvider())
     ],
     child: MyApp(),
   )

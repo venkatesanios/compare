@@ -81,7 +81,7 @@ class _ConditionUIState extends State<ConditionUI> with TickerProviderStateMixin
 
   Future<void> fetchData() async { 
     Map<String, Object> body = {"userId": '8', "controllerId": '1'};
-    final response = await HttpService().postRequest("getUserPlanningCondition", body);
+    final response = await HttpService().postRequest("getUserPlanningConditionLibrary", body);
      if (response.statusCode == 200) {
       setState(() {
         var jsondata1 = jsonDecode(response.body);
@@ -396,7 +396,7 @@ String conditionselection(String name,String id ,String value)
     "createUser": "1"
   };
      final response =
-      await HttpService().postRequest("createUserPlanningCondition", body);
+      await HttpService().postRequest("createUserPlanningConditionLibrary", body);
   final jsonDataresponse = json.decode(response.body);
    AlertDialogHelper.showAlert(context, '', jsonDataresponse['message']);
 }

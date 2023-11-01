@@ -33,7 +33,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/product 1.png',
+                  'assets/images/Illustration.png',
                   width: 44,
                   height: 44,
                 ),

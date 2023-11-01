@@ -153,6 +153,7 @@ class CustomCheckBoxListTile extends StatelessWidget {
   final bool value;
   final Function(bool?) onChanged;
   final IconData? icon;
+  final Widget? image;
   final BorderRadius? borderRadius;
 
   const CustomCheckBoxListTile({super.key,
@@ -160,7 +161,7 @@ class CustomCheckBoxListTile extends StatelessWidget {
     required this.value,
     required this.onChanged,
     this.icon,
-    this.borderRadius,
+    this.borderRadius, this.image,
   });
 
   @override
@@ -170,7 +171,7 @@ class CustomCheckBoxListTile extends StatelessWidget {
         borderRadius: borderRadius ?? BorderRadius.zero,
       ),
       contentPadding: const EdgeInsets.all(8),
-      leading: CircleAvatar(backgroundColor: Theme.of(context).colorScheme.secondary,child: Icon(icon, color: Colors.black)),
+      leading: CircleAvatar(backgroundColor: Theme.of(context).colorScheme.secondary,child: icon !=null ? Icon(icon, color: Colors.black) : image),
       title: Text(subtitle, style: Theme.of(context).textTheme.bodyLarge),
       trailing: Checkbox(
         value: value,
@@ -238,7 +239,9 @@ class CustomDropdownTile extends StatelessWidget {
   final TextStyle? titleColor;
   final List<String> dropdownItems;
   final String selectedValue;
+  final bool includeNoneOption;
   final void Function(String?) onChanged;
+  final bool showCircleAvatar;
 
   const CustomDropdownTile({
     Key? key,
@@ -252,6 +255,8 @@ class CustomDropdownTile extends StatelessWidget {
     required this.dropdownItems,
     required this.selectedValue,
     required this.onChanged,
+    this.includeNoneOption = true,
+    this.showCircleAvatar = true,
   }) : super(key: key);
 
   @override
@@ -261,7 +266,7 @@ class CustomDropdownTile extends StatelessWidget {
         borderRadius: borderRadius ?? BorderRadius.zero,
       ),
       contentPadding: const EdgeInsets.all(8),
-      leading: CircleAvatar(
+      leading: showCircleAvatar ? CircleAvatar(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         child: content is IconData
             ? Icon(content, color: Colors.black)
@@ -272,7 +277,7 @@ class CustomDropdownTile extends StatelessWidget {
             fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
           ),
         ),
-      ),
+      ) : null,
       title: Text(subtitle, style: titleColor ?? Theme.of(context).textTheme.bodyLarge, textAlign: textAlign),
       trailing: SizedBox(
         width: 130,
@@ -280,6 +285,7 @@ class CustomDropdownTile extends StatelessWidget {
           dropdownItems: dropdownItems,
           selectedValue: selectedValue,
           onChanged: onChanged,
+          includeNoneOption: includeNoneOption,
         ),
       ),
       tileColor: tileColor,

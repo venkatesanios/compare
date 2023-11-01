@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:oro2024_mac/model/IrrigationProgramModel/irrigation_program_model.dart';
+import 'package:oro2024_mac/utils/constants/http_services.dart';
 
-import '../model/IrrigationProgramModel/irrigation_program_model.dart';
-import '../services/http_service.dart';
-
+ 
 class IrrigationProgramMainProvider extends ChangeNotifier {
 
   Map<String, dynamic> sampleData = {
@@ -272,4 +272,163 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
       notifyListeners();
     });
   }
+
+  String _numberOfDays = '';
+  String get numberOfDays => _numberOfDays ;
+  void updateNumberOfDays(String newNumberOfDays) {
+    _numberOfDays = newNumberOfDays;
+    notifyListeners();
+  }
+
+  List<String> scheduleOptions = ['NO NOTHING', 'DO ONE TIME', 'DO WATERING', 'DO FERTIGATION'];
+
+  String _selectedScheduleOption = 'NO NOTHING';
+  String get selectedScheduleOption => _selectedScheduleOption;
+
+  void updateSelectedScheduleOption(newValue) {
+    _selectedScheduleOption = newValue;
+    notifyListeners();
+  }
+
+  //TODO: CONDITIONS PROVIDER
+
+  List<dynamic> conditionsType = [
+      {'name': 'Start by condition', 'value': ''},
+      {'name': 'Stop by condition', 'value': ''},
+      {'name': 'Enable by condition', 'value': ''},
+      {'name': 'Disable by condition', 'value': ''},
+  ];
+
+  List<Map<String, dynamic>> programConditions = [
+    {
+      "sNo": 1,
+      "id": "COND1",
+      "location": "",
+      "name": "Condition1",
+      "enable": false,
+      "state": "",
+      "duration": "00:00",
+      "conditionIsTrueWhen": "",
+      "fromTime": "00:00",
+      "untilTime": "00:00",
+      "notification": false,
+      "usedByProgram": "",
+      "program": "",
+      "zone": "",
+      "dropdown1": "",
+      "dropdown2": "",
+      "dropdownValue": ""
+    },
+    {
+      "sNo": 2,
+      "id": "COND2",
+      "location": "",
+      "name": "Condition2",
+      "enable": false,
+      "state": "",
+      "duration": "00:00",
+      "conditionIsTrueWhen": "",
+      "fromTime": "00:00",
+      "untilTime": "00:00",
+      "notification": false,
+      "usedByProgram": "",
+      "program": "",
+      "zone": "",
+      "dropdown1": "",
+      "dropdown2": "",
+      "dropdownValue": ""
+    },
+    {
+      "sNo": 3,
+      "id": "COND3",
+      "location": "",
+      "name": "Condition3",
+      "enable": false,
+      "state": "",
+      "duration": "00:00",
+      "conditionIsTrueWhen": "",
+      "fromTime": "00:00",
+      "untilTime": "00:00",
+      "notification": false,
+      "usedByProgram": "",
+      "program": "",
+      "zone": "",
+      "dropdown1": "",
+      "dropdown2": "",
+      "dropdownValue": ""
+    },
+    {
+      "sNo": 1,
+      "id": "COND1",
+      "location": "",
+      "name": "Condition1",
+      "enable": false,
+      "state": "",
+      "duration": "00:00",
+      "conditionIsTrueWhen": "",
+      "fromTime": "00:00",
+      "untilTime": "00:00",
+      "notification": false,
+      "usedByProgram": "",
+      "program": "",
+      "zone": "",
+      "dropdown1": "",
+      "dropdown2": "",
+      "dropdownValue": ""
+    },
+    {
+      "sNo": 2,
+      "id": "COND2",
+      "location": "",
+      "name": "Condition2",
+      "enable": false,
+      "state": "",
+      "duration": "00:00",
+      "conditionIsTrueWhen": "",
+      "fromTime": "00:00",
+      "untilTime": "00:00",
+      "notification": false,
+      "usedByProgram": "",
+      "program": "",
+      "zone": "",
+      "dropdown1": "",
+      "dropdown2": "",
+      "dropdownValue": ""
+    },
+    {
+      "sNo": 3,
+      "id": "COND3",
+      "location": "",
+      "name": "Condition3",
+      "enable": false,
+      "state": "",
+      "duration": "00:00",
+      "conditionIsTrueWhen": "",
+      "fromTime": "00:00",
+      "untilTime": "00:00",
+      "notification": false,
+      "usedByProgram": "",
+      "program": "",
+      "zone": "",
+      "dropdown1": "",
+      "dropdown2": "",
+      "dropdownValue": ""
+    },
+  ];
+
+  bool getValues(int conditionIndex, String conditionValue, int index) {
+    return programConditions[index][conditionValue] == conditionIndex;
+  }
+
+  void updateCondition(int conditionIndex, String conditionValue, int index, bool value) {
+    if (value) {
+      programConditions[index][conditionValue] = conditionIndex;
+    } else {
+      programConditions[index][conditionValue] = false;
+    }
+
+    notifyListeners();
+  }
+
+
 }

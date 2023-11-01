@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:oro2024_mac/utils/constants/custom_switch.dart';
 import 'package:oro2024_mac/utils/widgets/SCustomWidgets/custom_list_tile.dart';
-import 'package:oro2024_mac/utils/widgets/SCustomWidgets/custom_train_widget.dart';
-import 'package:provider/provider.dart';
+ import 'package:provider/provider.dart';
 
 import '../../provider/irrigation_program_main_provider.dart';
 import '../../utils/widgets/SCustomWidgets/custom_alert_dialog.dart';
+import '../../utils/widgets/SCustomWidgets/custom_train_widget.dart';
+import 'alert.dart';
 
 class SelectionScreen extends StatefulWidget {
   const SelectionScreen({super.key});
@@ -25,6 +25,20 @@ class _SelectionScreenState extends State<SelectionScreen> {
     return ListView(
       shrinkWrap: true,
       children: [
+        Container(child: IconButton(icon: Icon(Icons.info),onPressed: ()
+          {
+              List<ItemModel> itemList = [
+                ItemModel(srno: '1', id: 'v1', name: 'valve1', selection: true),
+                ItemModel(srno: '2', id: 'v2', name: 'valve2', selection: true),
+              ];
+              AlertDialogHelper.showAlert1(
+                context,
+                'Select Items',
+                'Select items from the list',
+                itemList,
+              );
+            },
+          ),),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -50,14 +64,10 @@ class _SelectionScreenState extends State<SelectionScreen> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )),
                 ),
-                ListTile(
-                  title: Text('Enable/disable diff pressure'),
-                  trailing: MySwitch(
+                CustomSwitchTile(
+                    subtitle: 'Enable/disable diff pressure',
                     value: false,
-                    onChanged: ((value) {
-                      setState(() {});
-                    }),
-                  ),
+                    onChanged: (newValue){}
                 ),
                 ListTile(
                   title: Text('Pressure Values'),
@@ -242,74 +252,79 @@ class _SelectionScreenState extends State<SelectionScreen> {
               final line = entry.value;
               final lineName = ['Main Valve', 'Pump'];
 
-              return CustomTrainWidget(
-                title: lineName[index],
-                child: Expanded(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: List.generate(line.value.length, (index) {
-                        final valvesMap = line.value.asMap();
-                        if (index < valvesMap.length) {
-                          final valveEntry = valvesMap.entries.elementAt(index);
-                          final valveIndex = valveEntry.key;
-                          final valve = valveEntry.value;
+              return Column(
+                children: [
+                  CustomTrainWidget(
+                    title: lineName[index],
+                    child: Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: List.generate(line.value.length, (index) {
+                            final valvesMap = line.value.asMap();
+                            if (index < valvesMap.length) {
+                              final valveEntry = valvesMap.entries.elementAt(index);
+                              final valveIndex = valveEntry.key;
+                              final valve = valveEntry.value;
 
-                          return Row(
-                            children: [
-                              InkWell(
-                                child: Card(
-                                  shape: const CircleBorder(),
-                                  elevation: 2,
-                                  borderOnForeground: true,
-                                  semanticContainer: true,
-                                  child: CircleAvatar(
-                                    radius: 25,
-                                    backgroundColor: sequenceProvider.isSelected(valve, lineIndex)
-                                        ? Theme.of(context).colorScheme.secondary
-                                        : Colors.white,
-                                    child: Center(
-                                      child: Text(
-                                        '$valve',
-                                        style: Theme.of(context).textTheme.bodyText1,
+                              return Row(
+                                children: [
+                                  InkWell(
+                                    child: Card(
+                                      shape: const CircleBorder(),
+                                      elevation: 2,
+                                      borderOnForeground: true,
+                                      semanticContainer: true,
+                                      child: CircleAvatar(
+                                        radius: 25,
+                                        backgroundColor: sequenceProvider.isSelected(valve, lineIndex)
+                                            ? Theme.of(context).colorScheme.secondary
+                                            : Colors.white,
+                                        child: Center(
+                                          child: Text(
+                                            '$valve',
+                                            style: Theme.of(context).textTheme.bodyText1,
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                                onTap: () {
-                                  sequenceProvider.valveSelection(valve, lineIndex);
-                                  if (sequenceProvider.isRecentlySelected) {
-                                    showAdaptiveDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return CustomAlertDialog(
-                                          title: 'Warning',
-                                          content:
-                                              "Valve $valve of ${line.name} is recently added and it cannot be added again next to it",
-                                          actions: [
-                                            TextButton(
-                                              child: const Text("OK"),
-                                              onPressed: () => Navigator.of(context).pop(),
-                                            ),
-                                          ],
+                                    onTap: () {
+                                      sequenceProvider.valveSelection(valve, lineIndex);
+                                      if (sequenceProvider.isRecentlySelected) {
+                                        showAdaptiveDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return CustomAlertDialog(
+                                              title: 'Warning',
+                                              content:
+                                                  "Valve $valve of ${line.name} is recently added and it cannot be added again next to it",
+                                              actions: [
+                                                TextButton(
+                                                  child: const Text("OK"),
+                                                  onPressed: () => Navigator.of(context).pop(),
+                                                ),
+                                              ],
+                                            );
+                                          },
                                         );
-                                      },
-                                    );
-                                  }
-                                },
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              )
-                            ],
-                          );
-                        } else {
-                          return const Text('No Valves');
-                        }
-                      }),
+                                      }
+                                    },
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  )
+                                ],
+                              );
+                            } else {
+                              return const Text('No Valves');
+                            }
+                          }),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  SizedBox(height: 10,)
+                ],
               );
             } else {
               return const Text('No Name');

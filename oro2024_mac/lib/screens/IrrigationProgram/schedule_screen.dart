@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:oro2024_mac/utils/widgets/SCustomWidgets/custom_drop_down.dart';
 import 'package:oro2024_mac/utils/widgets/SCustomWidgets/custom_list_tile.dart';
 import 'package:oro2024_mac/utils/widgets/SCustomWidgets/custom_train_widget.dart';
+ 
 import 'package:provider/provider.dart';
 
 import '../../provider/irrigation_program_main_provider.dart';
@@ -18,6 +18,8 @@ class ScheduleScreen extends StatefulWidget {
 
 class _ScheduleScreenState extends State<ScheduleScreen> with SingleTickerProviderStateMixin{
   late TabController _tabController;
+  final TextEditingController _textEditingController = TextEditingController();
+  String tempControllerName = '';
 
   @override
   void initState() {
@@ -110,6 +112,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> with SingleTickerProvid
                         final noOfCycles = rtcEntry.value[rtcName]['noOfCycles'] ?? '00';
                         final maximumTime = rtcEntry.value[rtcName]['maximumTime'] ?? '00:00';
                         final condition = rtcEntry.value[rtcName]['condition'] ?? false;
+                        List<String> days = List.generate(int.parse(scheduleProvider.numberOfDays != '' ? scheduleProvider.numberOfDays : '0'), (index) => 'DAY ${index + 1}');
                         return ListView(
                           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                           children: [
@@ -162,10 +165,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> with SingleTickerProvid
                                     ),
                                   ),
                                   Container(
-                                    decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(15), bottomLeft: Radius.circular(15)),
-                                    ),
+                                    color: Colors.white,
                                     child: CustomTimerTile(
                                       subtitle: 'MAXIMUM TIME',
                                       initialValue: maximumTime != '' ? maximumTime : '00:00',
@@ -174,10 +174,23 @@ class _ScheduleScreenState extends State<ScheduleScreen> with SingleTickerProvid
                                       icon: Icons.fact_check
                                     ),
                                   ),
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(15), bottomLeft: Radius.circular(15)),
+                                    ),
+                                    child: CustomSwitchTile(
+                                      subtitle: 'CONDITIONS',
+                                      onChanged: (newTime){},
+                                      icon: Icons.fact_check,
+                                      value: false,
+                                    ),
+                                  ),
                                 ]
                             ).toList(),
                             const SizedBox(height: 30,),
-                            Container(
+                            if(scheduleProvider.selectedScheduleType == scheduleProvider.scheduleTypes[1])
+                              Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(15),
@@ -208,8 +221,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> with SingleTickerProvid
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 10,),
-                            ...ListTile.divideTiles(
+                            if(scheduleProvider.selectedScheduleType == scheduleProvider.scheduleTypes[1])
+                              const SizedBox(height: 10,),
+                            if(scheduleProvider.selectedScheduleType == scheduleProvider.scheduleTypes[1])
+                              ...ListTile.divideTiles(
                                 context: context,
                                 tiles: [
                                   Container(
@@ -217,11 +232,48 @@ class _ScheduleScreenState extends State<ScheduleScreen> with SingleTickerProvid
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(topRight: Radius.circular(15), topLeft: Radius.circular(15)),
                                     ),
-                                    child: CustomTextFormTile(
-                                      subtitle: 'NO OF DAYS',
-                                      hintText: '00',
-                                      onChanged: (newValue){},
-                                      icon: Icons.format_list_numbered,
+                                    child: CustomTile(
+                                      subtitle: 'Number of days',
+                                      content: Icons.format_list_numbered,
+                                      trailing: SizedBox(
+                                        width: 50,
+                                        child: InkWell(
+                                          onTap: () {
+                                            _textEditingController.text = scheduleProvider.numberOfDays;
+                                            showAdaptiveDialog(
+                                              context: context,
+                                              builder: (ctx) => AlertDialog(
+                                                title: const Text("NUmber of days"),
+                                                content: TextFormField(
+                                                  keyboardType: TextInputType.number,
+                                                  controller: _textEditingController,
+                                                  onChanged: (newValue) => tempControllerName = newValue,
+                                                  onTap: () {
+                                                    _textEditingController.selection = TextSelection(
+                                                      baseOffset: 0,
+                                                      extentOffset: _textEditingController.text.length,
+                                                    );
+                                                  },
+                                                ),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    onPressed: () => Navigator.of(ctx).pop(),
+                                                    child: const Text("CANCEL", style: TextStyle(color: Colors.red),),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(ctx).pop();
+                                                      scheduleProvider.updateNumberOfDays(tempControllerName);
+                                                    },
+                                                    child: const Text("OKAY",),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                          child: Text(scheduleProvider.numberOfDays != '' ? scheduleProvider.numberOfDays : '00', style: Theme.of(context).textTheme.bodyMedium,),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -235,9 +287,70 @@ class _ScheduleScreenState extends State<ScheduleScreen> with SingleTickerProvid
                                           )
                                       ),
                                     ),
-                                  )
+                                  ),
+                                  for(var i = 0; i < int.parse(scheduleProvider.numberOfDays != '' ? scheduleProvider.numberOfDays : '0'); i++)
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: (i == (int.parse(scheduleProvider.numberOfDays)) - 1)
+                                            ? const BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)) : BorderRadius.zero,
+                                      ),
+                                      child: CustomDropdownTile(
+                                        subtitle: days[i],
+                                        content: '${i+1}',
+                                        dropdownItems: scheduleProvider.scheduleOptions,
+                                        selectedValue: scheduleProvider.selectedScheduleOption,
+                                        onChanged: (newValue) => scheduleProvider.updateSelectedScheduleOption(newValue),
+                                        includeNoneOption: false,
+                                      ),
+                                    ),
                                 ]
                             ).toList(),
+                            if(scheduleProvider.selectedScheduleType == scheduleProvider.scheduleTypes[2])
+                              ...ListTile.divideTiles(
+                                context: context,
+                                tiles: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(topRight: Radius.circular(15), topLeft: Radius.circular(15)),
+                                    ),
+                                    child: CustomTile(
+                                      subtitle: 'Start date',
+                                      content: Icons.calendar_month,
+                                      trailing: IntrinsicWidth(
+                                        child: DatePickerField(value: DateTime.now(),
+                                          onChanged: (newDate ) => print(newDate),
+                                        )
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    color: Colors.white,
+                                    child: CustomTextFormTile(
+                                      subtitle: 'RUN DAYS',
+                                      hintText: '00',
+                                      initialValue: noOfCycles,
+                                      onChanged: (newValue){},
+                                      icon: Icons.directions_run,
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(15), bottomLeft: Radius.circular(15)),
+                                    ),
+                                    child: CustomTextFormTile(
+                                      subtitle: 'SKIP DAYS',
+                                      hintText: '00',
+                                      initialValue: noOfCycles,
+                                      onChanged: (newValue){},
+                                      icon: Icons.skip_next,
+                                    ),
+                                  ),
+                                ]
+                              ),
+                            SizedBox(height: 50,)
                           ]
                         );
                       });

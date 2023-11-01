@@ -4,33 +4,45 @@ class CustomDropdownWidget extends StatelessWidget {
   final List<String> dropdownItems;
   final String selectedValue;
   final Function(String?) onChanged;
+  final bool includeNoneOption;
 
-  const CustomDropdownWidget({super.key,
+  const CustomDropdownWidget({
+    Key? key,
     required this.dropdownItems,
     required this.selectedValue,
     required this.onChanged,
-  });
+    this.includeNoneOption = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      isExpanded: true,
-      underline: Container(),
-      value: selectedValue,
-      items: [
+    List<DropdownMenuItem<String>> items = [];
+
+    if (includeNoneOption) {
+      items.add(
         const DropdownMenuItem<String>(
           value: 'None',
           child: Text('None'),
         ),
-        ...dropdownItems
-            .where((name) => name != null)
-            .map((pumpName) {
-          return DropdownMenuItem<String>(
-            value: pumpName,
-            child: Text(pumpName),
-          );
-        }).toList(),
-      ],
+      );
+    }
+
+    items.addAll(
+      dropdownItems
+          .where((name) => name != null)
+          .map((pumpName) {
+        return DropdownMenuItem<String>(
+          value: pumpName,
+          child: Text(pumpName),
+        );
+      }).toList(),
+    );
+
+    return DropdownButton<String>(
+      isExpanded: true,
+      underline: Container(),
+      value: selectedValue,
+      items: items,
       onChanged: onChanged,
     );
   }
