@@ -50,7 +50,8 @@ class SelectedListProvider with ChangeNotifier {
 
 class AlertDialogHelper {
   static void showAlert1(BuildContext context, String title, String message, List<ItemModel> itemlist) {
-    List<bool> selectedItems = List.filled(itemlist.length, false);
+    List<bool> selectedItems = List.generate(itemlist.length, (index) => itemlist[index].selection);
+
     bool selectAll = false;
 
     showDialog(

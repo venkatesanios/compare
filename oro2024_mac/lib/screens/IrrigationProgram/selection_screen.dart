@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oro2024_mac/utils/widgets/SCustomWidgets/custom_list_tile.dart';
- import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../provider/irrigation_program_main_provider.dart';
 import '../../utils/widgets/SCustomWidgets/custom_alert_dialog.dart';
@@ -21,24 +21,63 @@ class _SelectionScreenState extends State<SelectionScreen> {
     final sequenceProvider =
         Provider.of<IrrigationProgramMainProvider>(context);
     final Map<int, GlobalKey> itemKeys = {};
-
+    List<ItemModel> itemList = [
+      ItemModel(srno: '1', id: 'v1', name: 'valve1', selection: true),
+      ItemModel(srno: '2', id: 'v2', name: 'valve2', selection: false),
+      ItemModel(srno: '3', id: 'v3', name: 'valve3', selection: true),
+      ItemModel(srno: '4', id: 'v4', name: 'valve4', selection: false),
+    ];
+   List temporarySelection = List.filled(itemList.length, false);
     return ListView(
       shrinkWrap: true,
       children: [
-        Container(child: IconButton(icon: Icon(Icons.info),onPressed: ()
-          {
-              List<ItemModel> itemList = [
-                ItemModel(srno: '1', id: 'v1', name: 'valve1', selection: true),
-                ItemModel(srno: '2', id: 'v2', name: 'valve2', selection: true),
-              ];
+        Container(
+          child: IconButton(
+            icon: Icon(Icons.info),
+            onPressed: () {
               AlertDialogHelper.showAlert1(
                 context,
                 'Select Items',
                 'Select items from the list',
                 itemList,
               );
+              // MyAppm();
             },
-          ),),
+          ),
+        ),
+        Container(
+          height: 70, // Set the height of the inner list
+          child: Scrollbar(
+            trackVisibility: true,
+            child: ListView.builder(
+              controller: ScrollController(),
+              scrollDirection: Axis.horizontal,
+              itemCount: itemList.length,
+              itemBuilder: (context, innerIndex) {
+                ItemModel currentItem = itemList[innerIndex];
+
+                return Container(
+                   margin: const EdgeInsets.all(4),
+                  child: Center(
+                    child: ChoiceChip(
+                      label: Text(
+                          'Choice $innerIndex'), // Replace with your label text
+                      selected: currentItem
+                          .selection, // Set based on the selection of the current item
+                      onSelected: (bool selected) {
+                        print('selected:$selected');
+                        setState(() {
+                          temporarySelection[innerIndex] = selected;
+                          // currentItem.updateSelection(selected);
+                        });
+                      },
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -67,16 +106,15 @@ class _SelectionScreenState extends State<SelectionScreen> {
                 CustomSwitchTile(
                     subtitle: 'Enable/disable diff pressure',
                     value: false,
-                    onChanged: (newValue){}
-                ),
+                    onChanged: (newValue) {}),
                 ListTile(
                   title: Text('Pressure Values'),
                   trailing: Container(
                     height: 40,
                     width: 100,
                     child: TextFormField(
-                      keyboardType: const TextInputType.numberWithOptions(
-                          decimal: true),
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
                       initialValue: '0.0bar',
                       showCursor: true,
                       decoration: InputDecoration(hintText: '0.0bar'),
@@ -263,7 +301,8 @@ class _SelectionScreenState extends State<SelectionScreen> {
                           children: List.generate(line.value.length, (index) {
                             final valvesMap = line.value.asMap();
                             if (index < valvesMap.length) {
-                              final valveEntry = valvesMap.entries.elementAt(index);
+                              final valveEntry =
+                                  valvesMap.entries.elementAt(index);
                               final valveIndex = valveEntry.key;
                               final valve = valveEntry.value;
 
@@ -277,19 +316,25 @@ class _SelectionScreenState extends State<SelectionScreen> {
                                       semanticContainer: true,
                                       child: CircleAvatar(
                                         radius: 25,
-                                        backgroundColor: sequenceProvider.isSelected(valve, lineIndex)
-                                            ? Theme.of(context).colorScheme.secondary
+                                        backgroundColor: sequenceProvider
+                                                .isSelected(valve, lineIndex)
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .secondary
                                             : Colors.white,
                                         child: Center(
                                           child: Text(
                                             '$valve',
-                                            style: Theme.of(context).textTheme.bodyText1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1,
                                           ),
                                         ),
                                       ),
                                     ),
                                     onTap: () {
-                                      sequenceProvider.valveSelection(valve, lineIndex);
+                                      sequenceProvider.valveSelection(
+                                          valve, lineIndex);
                                       if (sequenceProvider.isRecentlySelected) {
                                         showAdaptiveDialog(
                                           context: context,
@@ -301,7 +346,9 @@ class _SelectionScreenState extends State<SelectionScreen> {
                                               actions: [
                                                 TextButton(
                                                   child: const Text("OK"),
-                                                  onPressed: () => Navigator.of(context).pop(),
+                                                  onPressed: () =>
+                                                      Navigator.of(context)
+                                                          .pop(),
                                                 ),
                                               ],
                                             );
@@ -323,7 +370,9 @@ class _SelectionScreenState extends State<SelectionScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10,)
+                  SizedBox(
+                    height: 10,
+                  )
                 ],
               );
             } else {
@@ -331,7 +380,6 @@ class _SelectionScreenState extends State<SelectionScreen> {
             }
           }),
         ),
-
         const SizedBox(
           height: 10,
         ),
@@ -388,8 +436,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                   ),
                 )),
                 ListTile(
-                    title: Text('No.of Backwash filters'),
-                    trailing: Text('2')),
+                    title: Text('No.of Backwash filters'), trailing: Text('2')),
               ],
             ),
           ),
