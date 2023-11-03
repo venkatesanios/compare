@@ -21,7 +21,7 @@ class _FilterSettingScreenWidgetState extends State<FilterSettingScreenWidget>
       builder: (context, constraints) {
         // if (constraints.maxWwidgetTypeIdth <= 600) {
           // Render mobile content
-          return ConditionUI();
+          return FilterBckwaskSettingsUI();
         // }
         // else {
           // Render web content
@@ -33,14 +33,14 @@ class _FilterSettingScreenWidgetState extends State<FilterSettingScreenWidget>
 }
 
 
-class ConditionUI extends StatefulWidget {
-  const ConditionUI({Key? key});
+class FilterBckwaskSettingsUI extends StatefulWidget {
+  const FilterBckwaskSettingsUI({Key? key});
 
   @override
-  State<ConditionUI> createState() => _ConditionUIState();
+  State<FilterBckwaskSettingsUI> createState() => _FilterBckwaskSettingsUIState();
 }
 
-class _ConditionUIState extends State<ConditionUI>   {
+class _FilterBckwaskSettingsUIState extends State<FilterBckwaskSettingsUI>   {
    TimeOfDay _selectedTime = TimeOfDay.now();
     FiltersettingsModel _FiltersettingsModel = FiltersettingsModel();
    final _formKey = GlobalKey<FormState>();
