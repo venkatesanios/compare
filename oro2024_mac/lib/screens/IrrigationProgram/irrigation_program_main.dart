@@ -13,6 +13,7 @@ import '../../utils/widgets/SCustomWidgets/custom_overlay_widget.dart';
 import '../../utils/widgets/SCustomWidgets/custom_tab.dart';
 import 'alarm_screen.dart';
 import 'conditions_screen.dart';
+import 'new.dart';
 
 class IrrigationProgram extends StatefulWidget {
   const IrrigationProgram({super.key});
@@ -102,7 +103,7 @@ class _IrrigationProgramState extends State<IrrigationProgram>
             ScheduleScreen(),
             ConditionsScreen(),
             WaterAndFertScreen(),
-            SelectionScreen(),
+            SelectionScreen1(),
             AlarmScreen(),
             Center(child: Text('Tab 7 Content')),
           ],

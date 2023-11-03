@@ -58,11 +58,11 @@ class MyApp extends StatelessWidget {
       // home: ConfigMakerScreen(),
       // home: HomeScreen(),
       // home: SellDevice(purpose: '', title: '',),
-      // home: const IrrigationProgram(),
+      home: const IrrigationProgram(),
       // home: const PreferencesScreen(),
       // home: const DataAcquisitionMain(),
       // home: const ProductLimitScreen(),
-      home:  FilterSettingScreenWidget(),
+      // home:  FilterSettingScreenWidget(),
       // home: MultipleChoiceChipListExample(),
     );
 
