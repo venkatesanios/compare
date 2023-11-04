@@ -1,17 +1,17 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import '../../model/IrrigationProgramModel/selection_model.dart';
-import '../../utils/constants/http_services.dart';
+ import '../../model/IrrigationProgramModel/selection_model.dart';
+ import '../../utils/constants/http_services.dart';
 
-class SelectionScreen extends StatefulWidget {
-  const SelectionScreen({super.key});
+class SelectionScreen3 extends StatefulWidget {
+  const SelectionScreen3({super.key});
 
   @override
-  State<SelectionScreen> createState() => _SelectionScreenState();
+  State<SelectionScreen3> createState() => _SelectionScreenState();
 }
 
-class _SelectionScreenState extends State<SelectionScreen> {
+class _SelectionScreenState extends State<SelectionScreen3> {
 
   final Map<int, GlobalKey> itemKeys = {};
   String filterselection = "Central filter";
@@ -30,7 +30,8 @@ class _SelectionScreenState extends State<SelectionScreen> {
       "controllerId": 4
     };
     final response = await HttpService().postRequest("getUserProgramSelection", body);
-     final jsonData = json.decode(response.body);
+    print(response.body);
+    final jsonData = json.decode(response.body);
     try {
       setState(() {
         _selectionModel = SelectionModel.fromJson(jsonData);
@@ -39,14 +40,17 @@ class _SelectionScreenState extends State<SelectionScreen> {
       // Handle error
       print('Error: $e');
     }
-     // _selectionModel = SelectionModel.fromJson(jsondata);
+     print(json.encode(_selectionModel));
+    // _selectionModel = SelectionModel.fromJson(jsondata);
   }
 
   @override
   Widget build(BuildContext context) {
     Widget buildCard(List<generalData> itemList, List<generalData> itemList2,
         String title, String subtitle, String subtitle2) {
-       return Padding(
+      print("itemList");
+      print(json.encode(itemList));
+      return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
           child: Container(
@@ -128,13 +132,13 @@ class _SelectionScreenState extends State<SelectionScreen> {
         children: [
           const SizedBox(height: 10),
           _selectionModel.data!.mainValve!.isNotEmpty ? buildCard(
-              _selectionModel.data!.mainValve!, [], 'Main Valve Selection',
-              'MAIN VALVE', '') : Container(),
+              _selectionModel.data!.mainValve!, [], 'MAIN VALVE',
+              'List of Valves', '') : Container(),
           // buildCard(_selectionModel.data!.mainValve!,[],'MAIN VALVE', '',''),
           const SizedBox(height: 10),
           _selectionModel.data!.irrigationPump!.isNotEmpty ? buildCard(
-              _selectionModel.data!.irrigationPump!, [], 'Irrigation Pump Selection',
-              'PUMP SELECTION', '') : Container(),
+              _selectionModel.data!.irrigationPump!, [], 'PUMP SELECTION',
+              'List of Pump', '') : Container(),
 
           // buildCard(_selectionModel.data!.irrigationPump!,[],'PUMP SELECTION', '',''),
           const SizedBox(height: 10),

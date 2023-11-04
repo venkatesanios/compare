@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:oro2024_mac/screens/IrrigationProgram/new2.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/schedule_screen.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/selection_screen.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/sequence_screen.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/water_fert_screen.dart';
 import 'package:oro2024_mac/utils/widgets/SCustomWidgets/custom_alert_dialog.dart';
- 
 import 'package:provider/provider.dart';
-
 import '../../provider/irrigation_program_main_provider.dart';
 import '../../utils/widgets/SCustomWidgets/custom_overlay_widget.dart';
 import '../../utils/widgets/SCustomWidgets/custom_tab.dart';
 import 'alarm_screen.dart';
 import 'conditions_screen.dart';
-import 'new.dart';
 
 class IrrigationProgram extends StatefulWidget {
   const IrrigationProgram({super.key});
-
   @override
   State<IrrigationProgram> createState() => _IrrigationProgramState();
 }
@@ -103,7 +100,7 @@ class _IrrigationProgramState extends State<IrrigationProgram>
             ScheduleScreen(),
             ConditionsScreen(),
             WaterAndFertScreen(),
-            SelectionScreen1(),
+            SelectionScreen(),
             AlarmScreen(),
             Center(child: Text('Tab 7 Content')),
           ],
