@@ -3,6 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:oro2024_mac/model/IrrigationProgramModel/irrigation_program_model.dart';
 import 'package:oro2024_mac/utils/constants/http_services.dart';
+import 'package:provider/provider.dart';
+
+import '../model/IrrigationProgramModel/selection_model.dart';
+import '../screens/IrrigationProgram/selection_screen.dart';
 
  
 class IrrigationProgramMainProvider extends ChangeNotifier {
@@ -119,7 +123,7 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
     _levelSensor = List<Devices>.from(sampleData["levelSensors"].map((element) => Devices.fromJson(element)));
     _groups = List<Group>.from(sampleData["group"].map((element) => Group.fromJson(element)));
     _conditions = List<Devices>.from(sampleData["conditions"].map((element) => Condition.fromJson(element)));
-
+    fetchData();
     Future.delayed(Duration.zero, () {
       notifyListeners();
     });
@@ -430,5 +434,36 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+//TODO:SELECTION PROVIDER
+  SelectionModel _selectionModel = SelectionModel();
 
+  SelectionModel get selectionModel => _selectionModel;
+
+  void updateSelectionModel(SelectionModel newSelectionModel) {
+    _selectionModel = newSelectionModel;
+    notifyListeners();
+  }
+  Future<void> fetchData() async {
+    Map<String, Object> body = {
+      "userId": 8,
+      "controllerId": 4
+    };
+    final response = await HttpService().postRequest("getUserProgramSelection", body);
+    final jsonData = json.decode(response.body);
+    try {
+      // final selectionModelProvider = Provider.of<SelectionModelProvider>(context, listen: false);
+      // selectionModelProvider.updateSelectionModel(SelectionModel.fromJson(jsonData));
+      print('Irrigation MAin ---------------------------------------------------');
+print(jsonData);
+         _selectionModel = SelectionModel.fromJson(jsonData);
+
+    } catch (e) {
+      // Handle error
+      print('Error: $e');
+    }
+    Future.delayed(Duration(seconds: 2), (){
+      notifyListeners();
+    });
+    // _selectionModel = SelectionModel.fromJson(jsondata);
+  }
 }

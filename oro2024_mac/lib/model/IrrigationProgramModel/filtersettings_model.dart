@@ -11,7 +11,7 @@ String filtersettingsModelToJson(FiltersettingsModel data) => json.encode(data.t
 class FiltersettingsModel {
   int? code;
   String? message;
-  Data? data;
+  List<filterBackwashing>? data;
 
   FiltersettingsModel({
     this.code,
@@ -22,33 +22,17 @@ class FiltersettingsModel {
   factory FiltersettingsModel.fromJson(Map<String, dynamic> json) => FiltersettingsModel(
     code: json["code"],
     message: json["message"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
+    data: json["data"] == null ? [] : List<filterBackwashing>.from(json["data"]!.map((x) => filterBackwashing.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "code": code,
     "message": message,
-    "data": data?.toJson(),
+    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
   };
 }
 
-class Data {
-  List<FilterBackwashing>? filterBackwashing;
-
-  Data({
-    this.filterBackwashing,
-  });
-
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    filterBackwashing: json["filterBackwashing"] == null ? [] : List<FilterBackwashing>.from(json["filterBackwashing"]!.map((x) => FilterBackwashing.fromJson(x))),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "filterBackwashing": filterBackwashing == null ? [] : List<dynamic>.from(filterBackwashing!.map((x) => x.toJson())),
-  };
-}
-
-class FilterBackwashing {
+class filterBackwashing {
   String? title;
   int? widgetTypeId;
   String? iconCodePoint;
@@ -56,7 +40,7 @@ class FilterBackwashing {
   dynamic value;
   bool? hidden;
 
-  FilterBackwashing({
+  filterBackwashing({
     this.title,
     this.widgetTypeId,
     this.iconCodePoint,
@@ -65,7 +49,7 @@ class FilterBackwashing {
     this.hidden,
   });
 
-  factory FilterBackwashing.fromJson(Map<String, dynamic> json) => FilterBackwashing(
+  factory filterBackwashing.fromJson(Map<String, dynamic> json) => filterBackwashing(
     title: json["title"],
     widgetTypeId: json["widgetTypeId"],
     iconCodePoint: json["iconCodePoint"],
@@ -78,7 +62,7 @@ class FilterBackwashing {
     "title": title,
     "widgetTypeId": widgetTypeId,
     "iconCodePoint": iconCodePoint,
-    "iconFontFamily":  iconFontFamily,
+    "iconFontFamily": iconFontFamily,
     "value": value,
     "hidden": hidden,
   };

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/alert.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/filtersettings.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/multiselection.dart';
+import 'package:oro2024_mac/screens/IrrigationProgram/selection_screen.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/testscreen.dart';
 import 'package:oro2024_mac/screens/config_maker/config_maker.dart';
 import 'package:oro2024_mac/services/mqtt.dart';
@@ -37,7 +38,8 @@ void main() {
       ChangeNotifierProvider(create: (context) => PreferencesMainProvider()),
       ChangeNotifierProvider(create: (context) => DataAcquisitionProvider()),
       ChangeNotifierProvider(create: (context) => ProductLimitProvider()),
-      ChangeNotifierProvider(create: (context) => SelectedListProvider())
+      ChangeNotifierProvider(create: (context) => SelectedListProvider()),
+      ChangeNotifierProvider(create: (context) => SelectionModelProvider())
     ],
     child: MyApp(),
   )
@@ -58,12 +60,12 @@ class MyApp extends StatelessWidget {
       // home: ConfigMakerScreen(),
       // home: HomeScreen(),
       // home: SellDevice(purpose: '', title: '',),
-      home: const IrrigationProgram(),
+      // home: const IrrigationProgram(),
       // home: const PreferencesScreen(),
       // home: const DataAcquisitionMain(),
       // home: const ProductLimitScreen(),
       // home:  FilterSettingScreenWidget(),
-      // home: MultipleChoiceChipListExample(),
+      home: FilterSettingScreenWidget(),
     );
 
   }
