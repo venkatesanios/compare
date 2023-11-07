@@ -4,6 +4,7 @@ import 'package:oro2024_mac/screens/IrrigationProgram/filtersettings.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/multiselection.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/selection_screen.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/testscreen.dart';
+import 'package:oro2024_mac/screens/IrrigationProgram/vitualmeter.dart';
 import 'package:oro2024_mac/screens/config_maker/config_maker.dart';
 import 'package:oro2024_mac/services/mqtt.dart';
 import 'package:oro2024_mac/provider/ConfigMakerProvider/product_limit_provider.dart';
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
       // home: const DataAcquisitionMain(),
       // home: const ProductLimitScreen(),
       // home:  FilterSettingScreenWidget(),
-      home: FilterSettingScreenWidget(),
+      home: VirtualwaterMeterUI(),
     );
 
   }

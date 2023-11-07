@@ -34,7 +34,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
   @override
   void initState() {
     super.initState();
-      // fetchData();
+      fetchData();
   }
 
   Future<void> fetchData() async {
@@ -149,7 +149,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
 
       if (_selectionModel.data == null) {
         return Center(
-            child: CircularProgressIndicator()); // Or handle the null case in a way that makes sense for your application
+            child: CircularProgressIndicator());
       } else {
         return ListView(
           shrinkWrap: true,
