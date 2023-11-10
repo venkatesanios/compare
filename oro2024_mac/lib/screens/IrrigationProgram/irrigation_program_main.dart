@@ -101,8 +101,8 @@ class _IrrigationProgramState extends State<IrrigationProgram>
             ScheduleScreen(),
             ConditionsScreen(),
             WaterAndFertScreen(),
-            // SelectionScreen(),
             SelectionScreen(),
+            // SelectionScreen(),
             AlarmScreen(),
 
             Center(child: Text('Tab 7 Content')),

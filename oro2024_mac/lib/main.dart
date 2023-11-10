@@ -4,7 +4,7 @@ import 'package:oro2024_mac/screens/IrrigationProgram/filtersettings.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/multiselection.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/selection_screen.dart';
 import 'package:oro2024_mac/screens/IrrigationProgram/testscreen.dart';
-import 'package:oro2024_mac/screens/IrrigationProgram/vitualmeter.dart';
+import 'package:oro2024_mac/screens/IrrigationProgram/vitual_meter_screen.dart';
 import 'package:oro2024_mac/screens/config_maker/config_maker.dart';
 import 'package:oro2024_mac/services/mqtt.dart';
 import 'package:oro2024_mac/provider/ConfigMakerProvider/product_limit_provider.dart';
@@ -40,7 +40,7 @@ void main() {
       ChangeNotifierProvider(create: (context) => DataAcquisitionProvider()),
       ChangeNotifierProvider(create: (context) => ProductLimitProvider()),
       ChangeNotifierProvider(create: (context) => SelectedListProvider()),
-      ChangeNotifierProvider(create: (context) => SelectionModelProvider())
+      // ChangeNotifierProvider(create: (context) => SelectionModelProvider())
     ],
     child: MyApp(),
   )
@@ -68,6 +68,5 @@ class MyApp extends StatelessWidget {
       // home:  FilterSettingScreenWidget(),
       home: VirtualwaterMeterUI(),
     );
-
   }
 }

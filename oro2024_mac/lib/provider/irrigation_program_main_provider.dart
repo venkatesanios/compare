@@ -8,9 +8,7 @@ import 'package:provider/provider.dart';
 import '../model/IrrigationProgramModel/selection_model.dart';
 import '../screens/IrrigationProgram/selection_screen.dart';
 
- 
 class IrrigationProgramMainProvider extends ChangeNotifier {
-
   Map<String, dynamic> sampleData = {
     "program": {
       "id": "",
@@ -49,18 +47,67 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
       {"sNo": 11, "id": "COND3", "location": "", "name": "Conditions 3"},
       {"sNo": 13, "id": "COND4", "location": "", "name": "Conditions 4"}
     ],
-    "line" : [
-      {"sno": 1, "id": 1, "name": "Line1", "value": ["0","2","3","4"]},
-      {"sno": 2, "id": 2, "name": "Line2", "value": ["2","2","3","4"]},
-      {"sno": 3, "id": 3, "name": "Line3", "value": ["3","2","3","4"]},
-      {"sno": 4, "id": 4, "name": "Line4", "value": ["4","2","3","4"]},
-      {"sno": 5, "id": 5, "name": "Line5", "value": ["5","2","3","4"]}
+    "line": [
+      {
+        "sno": 1,
+        "id": 1,
+        "name": "Line1",
+        "value": ["0", "2", "3", "4"]
+      },
+      {
+        "sno": 2,
+        "id": 2,
+        "name": "Line2",
+        "value": ["2", "2", "3", "4"]
+      },
+      {
+        "sno": 3,
+        "id": 3,
+        "name": "Line3",
+        "value": ["3", "2", "3", "4"]
+      },
+      {
+        "sno": 4,
+        "id": 4,
+        "name": "Line4",
+        "value": ["4", "2", "3", "4"]
+      },
+      {
+        "sno": 5,
+        "id": 5,
+        "name": "Line5",
+        "value": ["5", "2", "3", "4"]
+      }
     ],
-    "group" : [
-      {"sno": 1, "id": 1, "name": "Group1", "location":"Line 1", "value": ["1.1","1.2","1.3","1.4"]},
-      {"sno": 2, "id": 2, "name": "Group2", "location":"Line 2", "value": ["2.1","2.2","2.4"]},
-      {"sno": 3, "id": 3, "name": "Group3", "location":"Line 3", "value": ["3.1","3.2","3.3","3.4"]},
-      {"sno": 4, "id": 4, "name": "Group4", "location":"Line 4", "value": ["4.1","4.2","4.3","4.4"]}
+    "group": [
+      {
+        "sno": 1,
+        "id": 1,
+        "name": "Group1",
+        "location": "Line 1",
+        "value": ["1.1", "1.2", "1.3", "1.4"]
+      },
+      {
+        "sno": 2,
+        "id": 2,
+        "name": "Group2",
+        "location": "Line 2",
+        "value": ["2.1", "2.2", "2.4"]
+      },
+      {
+        "sno": 3,
+        "id": 3,
+        "name": "Group3",
+        "location": "Line 3",
+        "value": ["3.1", "3.2", "3.3", "3.4"]
+      },
+      {
+        "sno": 4,
+        "id": 4,
+        "name": "Group4",
+        "location": "Line 4",
+        "value": ["4.1", "4.2", "4.3", "4.4"]
+      }
     ],
     // "conditions":[
     //   {"id":"", "name": ""},{"id":"", "name": ""},{"id":"", "name": ""},{"id":"", "name": ""}
@@ -84,26 +131,33 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
   List<Devices>? get moistureSensor => _moistureSensor;
   List<Devices>? get levelSensor => _levelSensor;
   List<Devices>? get conditions => _conditions;
-
+  // List<SelectionModel>? irrigationpumpselection = [];
 
   Future<void> planningData() async {
-    try{
+    try {
       final userData = {
         "userId": 8,
         "controllerId": 1,
       };
-      final getUserPreference = await httpService.postRequest('defaultUserPreference', userData);
-      if(getUserPreference.statusCode == 200) {
+      final getUserPreference =
+          await httpService.postRequest('defaultUserPreference', userData);
+      if (getUserPreference.statusCode == 200) {
         final responseJson = getUserPreference.body;
         final convertedJson = jsonDecode(responseJson);
         _program = Program.fromJson(sampleData["program"]);
-        _lines = List<Line>.from(sampleData["line"].map((element) => Line.fromJson(element)));
-        _irrigationPump = List<Devices>.from(sampleData["irrigationPumpName"].map((element) => Devices.fromJson(element)));
-        _moistureSensor = List<Devices>.from(sampleData["moistureSensors"].map((element) => Devices.fromJson(element)));
-        _levelSensor = List<Devices>.from(sampleData["levelSensors"].map((element) => Devices.fromJson(element)));
-        _conditions = List<Devices>.from(sampleData["conditions"].map((element) => Devices.fromJson(element)));
-        _groups = List<Group>.from(sampleData["group"].map((element) => Group.fromJson(element)));
-      }else {
+        _lines = List<Line>.from(
+            sampleData["line"].map((element) => Line.fromJson(element)));
+        _irrigationPump = List<Devices>.from(sampleData["irrigationPumpName"]
+            .map((element) => Devices.fromJson(element)));
+        _moistureSensor = List<Devices>.from(sampleData["moistureSensors"]
+            .map((element) => Devices.fromJson(element)));
+        _levelSensor = List<Devices>.from(sampleData["levelSensors"]
+            .map((element) => Devices.fromJson(element)));
+        _conditions = List<Devices>.from(sampleData["conditions"]
+            .map((element) => Devices.fromJson(element)));
+        _groups = List<Group>.from(
+            sampleData["group"].map((element) => Group.fromJson(element)));
+      } else {
         print("HTTP Request failed or received an unexpected response.");
       }
     } catch (error) {
@@ -117,12 +171,18 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
 
   void initData(sampleData) {
     _program = Program.fromJson(sampleData["program"]);
-    _lines = List<Line>.from(sampleData["line"].map((element) => Line.fromJson(element)));
-    _irrigationPump = List<Devices>.from(sampleData["irrigationPumpName"].map((element) => Devices.fromJson(element)));
-    _moistureSensor = List<Devices>.from(sampleData["moistureSensors"].map((element) => Devices.fromJson(element)));
-    _levelSensor = List<Devices>.from(sampleData["levelSensors"].map((element) => Devices.fromJson(element)));
-    _groups = List<Group>.from(sampleData["group"].map((element) => Group.fromJson(element)));
-    _conditions = List<Devices>.from(sampleData["conditions"].map((element) => Condition.fromJson(element)));
+    _lines = List<Line>.from(
+        sampleData["line"].map((element) => Line.fromJson(element)));
+    _irrigationPump = List<Devices>.from(sampleData["irrigationPumpName"]
+        .map((element) => Devices.fromJson(element)));
+    _moistureSensor = List<Devices>.from(sampleData["moistureSensors"]
+        .map((element) => Devices.fromJson(element)));
+    _levelSensor = List<Devices>.from(
+        sampleData["levelSensors"].map((element) => Devices.fromJson(element)));
+    _groups = List<Group>.from(
+        sampleData["group"].map((element) => Group.fromJson(element)));
+    _conditions = List<Devices>.from(
+        sampleData["conditions"].map((element) => Condition.fromJson(element)));
     fetchData();
     Future.delayed(Duration.zero, () {
       notifyListeners();
@@ -142,8 +202,10 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
   bool isRecentlySelected = false;
 
   void valveSelection(String valves, int titleIndex) {
-    final bool groupContainsValue = groups!.any((group) => group.value.contains(valves));
-    final String currentVal = groupContainsValue ? valves : '${titleIndex + 1}.$valves';
+    final bool groupContainsValue =
+        groups!.any((group) => group.value.contains(valves));
+    final String currentVal =
+        groupContainsValue ? valves : '${titleIndex + 1}.$valves';
 
     if (sequencedValves.isNotEmpty) {
       final lastList = sequencedValves.last;
@@ -174,11 +236,10 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
   void updateSequencedValves(String currentVal) {
     if (isSingleValveMode) {
       sequencedValves.add(<String>[currentVal]);
-    }
-    else{
-      if(sequencedValves.isEmpty){
+    } else {
+      if (sequencedValves.isEmpty) {
         sequencedValves.add(<String>[currentVal]);
-      }else{
+      } else {
         final List<String> lastList = sequencedValves.last.cast<String>();
         lastList.add(currentVal);
       }
@@ -215,8 +276,10 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
   }
 
   bool isSelected(String valves, int titleIndex) {
-    final bool groupContainsValue = groups!.any((group) => group.value.contains(valves));
-    final String currentVal = groupContainsValue ? valves : '${titleIndex + 1}.$valves';
+    final bool groupContainsValue =
+        groups!.any((group) => group.value.contains(valves));
+    final String currentVal =
+        groupContainsValue ? valves : '${titleIndex + 1}.$valves';
 
     return sequencedValves.any((list) => list.contains(currentVal));
   }
@@ -227,7 +290,11 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
   }
 
   //TODO: SCHEDULE SCREEN PROVIDERS
-  List<String> scheduleTypes = ['NO SCHEDULE', 'SCHEDULE AS RUN LIST', 'SCHEDULE BY DAYS'];
+  List<String> scheduleTypes = [
+    'NO SCHEDULE',
+    'SCHEDULE AS RUN LIST',
+    'SCHEDULE BY DAYS'
+  ];
 
   String _selectedValue = 'NO SCHEDULE';
   String get selectedScheduleType => _selectedValue;
@@ -236,7 +303,6 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
     _selectedValue = newValue;
     notifyListeners();
   }
-
 
   List<Map<String, dynamic>> rtc = [
     {
@@ -278,13 +344,18 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
   }
 
   String _numberOfDays = '';
-  String get numberOfDays => _numberOfDays ;
+  String get numberOfDays => _numberOfDays;
   void updateNumberOfDays(String newNumberOfDays) {
     _numberOfDays = newNumberOfDays;
     notifyListeners();
   }
 
-  List<String> scheduleOptions = ['NO NOTHING', 'DO ONE TIME', 'DO WATERING', 'DO FERTIGATION'];
+  List<String> scheduleOptions = [
+    'NO NOTHING',
+    'DO ONE TIME',
+    'DO WATERING',
+    'DO FERTIGATION'
+  ];
 
   String _selectedScheduleOption = 'NO NOTHING';
   String get selectedScheduleOption => _selectedScheduleOption;
@@ -297,10 +368,10 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
   //TODO: CONDITIONS PROVIDER
 
   List<dynamic> conditionsType = [
-      {'name': 'Start by condition', 'value': ''},
-      {'name': 'Stop by condition', 'value': ''},
-      {'name': 'Enable by condition', 'value': ''},
-      {'name': 'Disable by condition', 'value': ''},
+    {'name': 'Start by condition', 'value': ''},
+    {'name': 'Stop by condition', 'value': ''},
+    {'name': 'Enable by condition', 'value': ''},
+    {'name': 'Disable by condition', 'value': ''},
   ];
 
   List<Map<String, dynamic>> programConditions = [
@@ -424,7 +495,8 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
     return programConditions[index][conditionValue] == conditionIndex;
   }
 
-  void updateCondition(int conditionIndex, String conditionValue, int index, bool value) {
+  void updateCondition(
+      int conditionIndex, String conditionValue, int index, bool value) {
     if (value) {
       programConditions[index][conditionValue] = conditionIndex;
     } else {
@@ -443,27 +515,60 @@ class IrrigationProgramMainProvider extends ChangeNotifier {
     _selectionModel = newSelectionModel;
     notifyListeners();
   }
+
   Future<void> fetchData() async {
-    Map<String, Object> body = {
-      "userId": 8,
-      "controllerId": 4
-    };
-    final response = await HttpService().postRequest("getUserProgramSelection", body);
+    Map<String, Object> body = {"userId": 15, "controllerId": 1};
+    final response =
+        await HttpService().postRequest("getUserProgramSelection", body);
     final jsonData = json.decode(response.body);
     try {
-      // final selectionModelProvider = Provider.of<SelectionModelProvider>(context, listen: false);
-      // selectionModelProvider.updateSelectionModel(SelectionModel.fromJson(jsonData));
-      print('Irrigation MAin ---------------------------------------------------');
-print(jsonData);
-         _selectionModel = SelectionModel.fromJson(jsonData);
 
-    } catch (e) {
-      // Handle error
-      print('Error: $e');
+       _selectionModel = SelectionModel.fromJson(jsonData);
+     } catch (e) {
+       print('Error: $e');
     }
-    Future.delayed(Duration(seconds: 2), (){
+    Future.delayed(Duration(seconds: 2), () {
       notifyListeners();
     });
-    // _selectionModel = SelectionModel.fromJson(jsondata);
+
+  }
+
+  void selectItem(int index, String title) {
+
+    switch (title) {
+      case 'MAIN VALVE':
+        selectionModel.data!.mainValve![index].selected =
+            !selectionModel.data!.mainValve![index].selected!;
+
+        break;
+      case 'PUMP SELECTION':
+        selectionModel.data!.irrigationPump![index].selected =
+            !selectionModel.data!.irrigationPump![index].selected!;
+
+        break;
+      case 'Central Fertilizer':
+        selectionModel.data!.centralFertilizationSite![index].selected =
+            !selectionModel.data!.centralFertilizationSite![index].selected!;
+
+        break;
+      case 'Local Fertilizer':
+        selectionModel.data!.localFertilizer![index].selected =
+            !selectionModel.data!.localFertilizer![index].selected!;
+
+        break;
+      case 'Central Filter':
+        selectionModel.data!.centralFilterSite![index].selected =
+            !selectionModel.data!.centralFilterSite![index].selected!;
+
+        break;
+      case 'Local Filter':
+        selectionModel.data!.localFilter![index].selected =
+            !selectionModel.data!.localFilter![index].selected!;
+
+        break;
+      default:
+        print('No match found');
+    }
+    notifyListeners();
   }
 }
